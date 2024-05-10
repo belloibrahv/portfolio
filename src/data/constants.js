@@ -161,7 +161,7 @@ export const experiences = [
     id: 1,
     img: "https://i.postimg.cc/QxvtrYKC/aidub-logo.png",
     role: "Backend Engineer",
-    company: "Aidub Tech.",
+    company: "Aidub Tech. Team",
     date: "Dec 2023 - Present",
     desc: "Working on Telerix Platforms project, Telerix is a software solution designed to be a central hub for collecting, storing, and analyzing telemetry data (measurement data) from various sources. It caters to individuals and organizations who need to monitor assets like equipment, infrastructure, or processes to optimize their performance and gain valuable insights.",
     skills: [
@@ -177,10 +177,10 @@ export const experiences = [
   {
     id: 2,
     img: "https://varuna.city/wp-content/uploads/2021/10/Varuna_logo_Final_V.png",
-    role: "Frontend Engineer",
+    role: "Backend Engineer",
     company: "Varuna Inc, Texas United State.",
     date: "May 2023 - Feb 2024",
-    desc: "Working on the frontend of the web application using ReactJS, Redux, and Material UI.",
+    desc: "Developed and maintained backend APIs using Django and Django Rest Framework.",
     skills: [
       "ReactJS",
       "Django Rest Framework",
@@ -200,7 +200,7 @@ export const experiences = [
     role: "Software Engineer",
     company: "Techvaults ltd. Lagos, Nigeria",
     date: "June 2019 - April 2023",
-    desc: "Built an employee management full stack web app used Docker and deployed on AWS ec2. I was the top performer in the program.",
+    desc: "Developed and maintained websites for various clients, including custodianplc.com.ng and DSC Capital.",
     skills: [
       "ReactJS",
       "Wordpress",
@@ -280,6 +280,40 @@ export const projects = [
     ],
   },
   {
+    id: 10,
+    title: "Custodian PLC.",
+    date: "2023",
+    description:
+      "Developed and maintained websites for various clients, including custodianplc.com.ng and DSC Capital.",
+    image:
+      "https://i.postimg.cc/WbXK7KnW/Screenshot-2024-05-10-at-15-14-18.png",
+    tags: [
+      "Google Gemini API",
+      "MongoDB Cloud",
+      "Express",
+      "NextJS",
+      "Figma",
+      "Github/Git",
+    ],
+    category: "web app",
+    // github: "https://github.com/smart-team-buildai/aleeyah.git",
+    webapp: "https://custodianplc.com.ng/",
+    // member: [
+    //   {
+    //     name: "Muhammad-Nabeel",
+    //     img: "https://avatars.githubusercontent.com/u/93738997?v=4",
+    //     linkedin: "https://www.linkedin.com/in/olaoye-md-nabeel/",
+    //     github: "https://github.com/dtechbro",
+    //   },
+    //   {
+    //     name: "Samuel Ganiu",
+    //     img: "https://avatars.githubusercontent.com/u/111003107?v=4",
+    //     linkedin: "https://www.linkedin.com/in/samuel-ganiu/",
+    //     github: "https://github.com/SirhmVFX",
+    //   },
+    // ],
+  },
+  {
     id: 0,
     title: "Ractor",
     date: "Apr 2023 - May 2023",
@@ -297,7 +331,7 @@ export const projects = [
     ],
     category: "web app",
     github: "",
-    webapp: "https://app.varuna.city/login",
+    // webapp: "https://app.varuna.city/login",
     member: [
       {
         name: "Abdulfatai Aka",
