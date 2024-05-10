@@ -109,7 +109,7 @@ function Footer() {
             <InstagramIcon />
           </SocialMediaIcon>
         </SocialMediaIcons>
-        <Copyright>&copy; 2024 Ibrahim Bello. All rights reserved.</Copyright>
+        <Copyright>&copy; 2024 Bello Ibrahim. All rights reserved.</Copyright>
       </FooterWrapper>
     </FooterContainer>
   );

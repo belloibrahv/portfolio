@@ -1,5 +1,5 @@
 export const Bio = {
-  name: "Ibrahim Bello",
+  name: "Bello Ibrahim",
   roles: [
     "Full Stack Developer",
     "Front-end Developer",
@@ -10,7 +10,7 @@ export const Bio = {
     "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   github: "https://github.com/belloibrahv",
   resume:
-    "https://drive.google.com/file/d/1KUGQe9OcfbaET3nnTRVPt5JdjXBoSOU4/view?usp=sharing",
+    "https://docs.google.com/document/d/1Osy922GKhQQkExNwbFeHUCg8fMHSRb6MCFgZyql-i_E/edit?usp=sharing",
   linkedin: "https://www.linkedin.com/in/bello-ibrahim-8951ba187/",
   twitter: "https://twitter.com/BelloDeveloper",
   insta: "https://www.instagram.com/",
@@ -26,11 +26,11 @@ export const skills = [
         image:
           "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K",
       },
-      {
-        name: "Redux",
-        image:
-          "https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg",
-      },
+      // {
+      //   name: "Redux",
+      //   image:
+      //     "https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg",
+      // },
       {
         name: "React Query",
         image:
@@ -285,8 +285,8 @@ export const projects = [
     date: "Apr 2023 - May 2023",
     description:
       "Developed a full-stack web application that allows users to Manage and expose water quality parameters measurements and insights to our customers",
-    image:
-      "https://i.postimg.cc/KcpJGm8f/Screenshot-2024-05-08-at-11-20-17.png",
+    // image:
+    //   "https://i.postimg.cc/KcpJGm8f/Screenshot-2024-05-08-at-11-20-17.png",
     tags: [
       "React Js",
       "Typescript",
