@@ -12,10 +12,12 @@ export const Nav = styled.div`
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: all 0.4s ease-in-out;
     @media (max-width: 960px) {
-        trastion: 0.8s all ease;
+        transition: 0.8s all ease;
     }
 `;
+
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -28,50 +30,65 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavLogo = styled(LinkR)`
-    width: 80%;    
-    padding: 0 6px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-decoration: none;
-    @media (max-width: 640px) {
+  width: 80%;    
+  padding: 0 6px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-decoration: none;
+  @media (max-width: 640px) {
       padding: 0 0px;
   }
 `;
-export const Span = styled.div`
-    padding: 0 4px;
-    font-weight: bold;
-    font-size: 18px;
-`;
-export const NavItems = styled.ul`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    gap: 32px;
-    padding: 0 6px;
-    list-style: none;
 
-    @media screen and (max-width: 768px) {
-      display: none;
+export const Span = styled.div`
+  padding: 0 4px;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, scaleUp 1.5s ease forwards;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
     }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes scaleUp {
+    0% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+`;
+
+export const NavItems = styled.ul`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  gap: 32px;
+  padding: 0 6px;
+  list-style: none;
+  @media screen and (max-width: 768px) {
+      display: none;
+  }
 `;
 
 export const NavLink = styled.a`
-    color: ${({ theme }) => theme.text_primary};
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-    :hover {
-      color: ${({ theme }) => theme.primary};
-    }
-
-    &.active {
-      border-bottom: 2px solid ${({ theme }) => theme.primary};
-    }
+  color: ${({ theme }) => theme.text_primary};
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+  text-decoration: none;
+  :hover {
+    color: ${({ theme }) => theme.primary};
+    transform: translateY(-5px);
+  }
 `;
-
 
 export const GitHubButton = styled.a`
   border: 1.8px solid ${({ theme }) => theme.primary};
@@ -87,13 +104,14 @@ export const GitHubButton = styled.a`
   text-decoration: none;
   font-size: 16px;
   transition: all 0.6s ease-in-out;
-    :hover {
-      background: ${({ theme }) => theme.primary};
-      color: ${({ theme }) => theme.white};     
-    }
-    @media screen and (max-width: 768px) { 
+  :hover {
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.white};
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 768px) { 
     font-size: 14px;
-    }
+  }
 `;
 
 export const ButtonContainer = styled.div`

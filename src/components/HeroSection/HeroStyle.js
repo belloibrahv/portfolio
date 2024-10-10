@@ -110,6 +110,13 @@ export const Img = styled.img`
     max-width: 280px;
     max-height: 280px;
   }
+
+  // Add hover effect
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  &:hover {
+    transform: scale(1.05); // Slight scale-up on hover
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25); // Stronger shadow on hover
+  }
 `;
 
 export const Title = styled.div`
