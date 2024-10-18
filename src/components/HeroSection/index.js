@@ -16,6 +16,7 @@ import {
 import HeroImg from "../../images/HeroImage.jpeg";
 import Typewriter from "typewriter-effect";
 import { Bio } from "../../data/constants";
+import GitHubActivity from "../GithubActivity";
 
 const HeroSection = () => {
   return (
@@ -42,6 +43,7 @@ const HeroSection = () => {
               </Span>
             </TextLoop>
             <SubTitle>{Bio.description}</SubTitle>
+            <GitHubActivity />
             <ResumeButton href={Bio.resume} target="display">
               Check Resume
             </ResumeButton>

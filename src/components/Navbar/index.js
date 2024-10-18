@@ -15,7 +15,7 @@ const Navbar = () => {
         <NavLogo to='/'>
           <a style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20;', cursor: 'pointer' }}>
             <DiCssdeck size="3rem" /> 
-            <Span>Becoming Ibrahim</Span> {/* Animated Title */}
+            <Span>code-ninja</Span> {/* Animated Title */}
           </a>
         </NavLogo>
         <MobileIcon>
