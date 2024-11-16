@@ -3,90 +3,67 @@ import axios from "axios";
 import { Typography, Box, CircularProgress } from "@mui/material";
 
 const GitHubActivity = () => {
-  const [latestCommit, setLatestCommit] = useState(null);
-  const [latestPR, setLatestPR] = useState(null);
+  const [mergedPRs, setMergedPRs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const username = "belloibrahv";
+
+  // Fetch merged pull requests
   useEffect(() => {
-    // Define the repo details (you'll need to replace 'belloibrahv' and 'repo-name' with actual values)
-    const username = "belloibrahv";
-    const repoName = "Eonix";
-
-    // Function to fetch the latest commit
-    const fetchLatestCommit = async () => {
-      try {
-        const commitResponse = await axios.get(
-          `https://api.github.com/repos/${username}/${repoName}/commits`
-        );
-        const latestCommitData = commitResponse.data[0]; // Get the latest commit
-        setLatestCommit(latestCommitData);
-      } catch (error) {
-        console.error("Error fetching commit:", error);
-      }
-    };
-
-    // Function to fetch the latest pull request
-    const fetchLatestPR = async () => {
+    const fetchMergedPRs = async () => {
       try {
         const prResponse = await axios.get(
-          `https://api.github.com/repos/${username}/${repoName}/pulls?state=all`
+          `https://api.github.com/search/issues?q=author:${username}+is:pr+is:merged&per_page=3`
         );
-        const latestPRData = prResponse.data[0]; // Get the latest pull request
-        setLatestPR(latestPRData);
+        setMergedPRs(prResponse.data.items.slice(0, 3)); // Get only the latest 3 merged PRs
       } catch (error) {
-        console.error("Error fetching pull request:", error);
+        console.error("Error fetching merged PRs:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    // Fetch both commit and PR
-    const fetchGitHubData = async () => {
-      await Promise.all([fetchLatestCommit(), fetchLatestPR()]);
-      setLoading(false);
-    };
-
-    fetchGitHubData();
-  }, []);
+    fetchMergedPRs();
+  }, [username]);
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" justifyContent="center" alignItems="center" height="200px">
         <CircularProgress />
       </Box>
     );
   }
 
   return (
-    <Box my={2}>
-      <Typography variant="h6" component="div" color='rgba(153, 0, 255, 1)'>
-        Latest GitHub Contributions
+    <Box my={4}>
+      <Typography variant="h6" component="div" color="rgba(153, 0, 255, 1)">
+        Latest Merged Pull Requests
       </Typography>
-
-      {latestCommit && (
-        <Box mt={2}>
-          <Typography variant="body1">
-            <span color="rgba(153, 0, 255, 1)">Last Commit:</span>{" "}
-            <a href={latestCommit.html_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color:'rgba(153, 0, 255, 1)' }}>
-              {latestCommit.commit.message}
-            </a>
-          </Typography>
-          <Typography variant="body2" color="rgb(242, 243, 244)">
-            Committed on {new Date(latestCommit.commit.committer.date).toLocaleString()}
-          </Typography>
-        </Box>
-      )}
-
-      {latestPR && (
-        <Box mt={2}>
-          <Typography variant="body1">
-            <span color="rgba(153, 0, 255, 1)">Last Pull Request:</span>{" "}
-            <a href={latestPR.html_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color:'rgba(153, 0, 255, 1)' }}>
-              {latestPR.title}
-            </a>
-          </Typography>
-          <Typography variant="body2" color="rgb(242, 243, 244)">
-            Opened on {new Date(latestPR.created_at).toLocaleString()}
-          </Typography>
-        </Box>
+      {mergedPRs.length > 0 ? (
+        mergedPRs.map((pr) => (
+          <Box key={pr.id} mt={3}>
+            <Typography variant="body1">
+              <a
+                href={pr.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "rgba(153, 0, 255, 1)" }}
+              >
+                {pr.title}
+              </a>
+            </Typography>
+            <Typography variant="body2" color="rgb(242, 243, 244)">
+              Merged on {new Date(pr.closed_at).toLocaleString()}
+            </Typography>
+            <Typography variant="body2" color="rgb(242, 243, 244)">
+              Repository: {pr.repository_url.split("/").slice(-1)}
+            </Typography>
+          </Box>
+        ))
+      ) : (
+        <Typography variant="body2" color="rgb(242, 243, 244)" mt={2}>
+          No merged PRs found.
+        </Typography>
       )}
     </Box>
   );
