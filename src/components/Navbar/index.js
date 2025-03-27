@@ -3,17 +3,17 @@ import { Nav, NavLink, NavbarContainer, Span, NavLogo, NavItems, GitHubButton, B
 import { DiCssdeck } from 'react-icons/di';
 import { FaBars } from 'react-icons/fa';
 import { Bio } from '../../data/constants';
-import { useTheme } from 'styled-components';
+// import { useTheme } from 'styled-components';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <Nav>
       <NavbarContainer>
         <NavLogo to='/'>
-          <a style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20;', cursor: 'pointer' }}>
+          <a href='/' style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20;', cursor: 'pointer' }}>
             <DiCssdeck size="3rem" /> 
             <Span>code-ninja</Span> {/* Animated Title */}
           </a>

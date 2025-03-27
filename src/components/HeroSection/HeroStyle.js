@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import _default from "../../themes/default";
+// import _default from "../../themes/default";
 
 export const HeroContainer = styled.div`
   background: ${({ theme }) => theme.card_light};
@@ -80,6 +80,7 @@ export const HeroRightContainer = styled.div`
   order: 2;
   justify-content: end;
   gap: 12px;
+  margin-top: -370px;
   @media (max-width: 960px) {
     order: 1;
     justify-content: center;
@@ -174,37 +175,61 @@ export const SubTitle = styled.div`
 `;
 
 export const ResumeButton = styled.a`
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
+    display: inline-block;
     text-decoration: none;
-    width: 95%;
+    width: 100%;
     max-width: 300px;
     text-align: center;
     padding: 16px 0;
-    color:${({ theme }) => theme.white};
-    border-radius: 20px;
+    color: ${({ theme }) => theme.white};
+    border-radius: 12px;
     cursor: pointer;
     font-size: 20px;
     font-weight: 600;
-    transition: all 0.2s ease-in-out !important;
-    background: hsla(271, 100%, 50%, 1);
-    background: linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    box-shadow:  20px 20px 60px #1F2634,
-    -20px -20px 60px #1F2634;
+    border: none;
+    outline: none;
+    
+    // Consistent gradient background
+    background: linear-gradient(
+        225deg, 
+        hsla(271, 100%, 50%, 1) 0%, 
+        hsla(294, 100%, 50%, 1) 100%
+    );
+    
+    // Improved transition for smoother hover effect
+    transition: all 0.3s ease;
+    
+    // Cross-browser box-shadow
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    
+    // Hover states
     &:hover {
-        transform: scale(1.05);
-    transition: all 0.4s ease-in-out;
-    box-shadow:  20px 20px 60px #1F2634,
-    filter: brightness(1);
-    }    
+        transform: translateY(-2px); // Subtle lift effect
+        box-shadow: 
+            0 6px 8px rgba(0, 0, 0, 0.15),
+            0 2px 4px rgba(0, 0, 0, 0.12);
+        filter: brightness(1.1); // Slight brightness increase
+    }
     
+    // Active/Focus states for accessibility
+    &:active {
+        transform: translateY(1px);
+        box-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.1),
+            0 1px 2px rgba(0, 0, 0, 0.06);
+    }
     
+    // Responsive adjustments
     @media (max-width: 640px) {
-        padding: 12px 0;
+        padding: 14px 0;
         font-size: 18px;
-    } 
+        max-width: 250px;
+    }
 
+    // Ensure consistent appearance across browsers
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 `;
