@@ -1,20 +1,13 @@
 export const Bio = {
   name: "Bello Ibrahim",
-  roles: [
-    "Full Stack Developer",
-    "Front-end Developer",
-    "Back-end Developer",
-    "Programmer",
-  ],
+  roles: ["Full Stack Developer", "AI Enthusiast", "Open Source Contributor"],
   description:
     "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   github: "https://github.com/belloibrahv",
   resume:
     "https://docs.google.com/document/d/17fD8W9jt5cO48wprgstnrciE33QZTsySzSnHqhCJmS8/edit?tab=t.0#heading=h.tuvb5o6toa41",
-  linkedin: "https://www.linkedin.com/in/bello-ibrahim-8951ba187/",
-  twitter: "https://twitter.com/BelloDeveloper",
-  insta: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/",
+  linkedin: "https://www.linkedin.com/in/ibrahim-bello-8951ba187",
+  twitter: "https://x.com/BelloDeveloper",
 };
 
 export const skills = [
