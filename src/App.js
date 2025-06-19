@@ -13,6 +13,8 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import ProjectDetails from "./components/ProjectDetails";
 import styled from "styled-components";
+import Resume from "./components/Resume";
+import Chatbot from "./components/Chatbot";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -35,6 +37,7 @@ function App() {
         <Navbar />
         <Body>
           <HeroSection />
+          <Resume />
           <Wrapper>
             <Skills />
             <Experience />
@@ -45,6 +48,7 @@ function App() {
             <Contact />
           </Wrapper>
           <Footer />
+          <Chatbot />
           {openModal.state &&
             <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
           }

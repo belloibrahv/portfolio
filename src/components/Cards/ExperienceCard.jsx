@@ -158,8 +158,21 @@ const ExperienceCard = ({ experience }) => {
             <Description>
                 {experience?.desc &&
                     <Span>{experience?.desc}</Span>
-
                 }
+                {experience?.problem && experience.problem.trim() !== '' && (
+                  <>
+                    <br />
+                    <b>Problem Solved:</b>
+                    <Span>{experience.problem}</Span>
+                  </>
+                )}
+                {experience?.outcome && experience.outcome.trim() !== '' && (
+                  <>
+                    <br />
+                    <b>Outcome/Impact:</b>
+                    <Span>{experience.outcome}</Span>
+                  </>
+                )}
                 {experience?.skills &&
                     <>
                         <br />
@@ -167,7 +180,7 @@ const ExperienceCard = ({ experience }) => {
                             <b>Skills:</b>
                             <ItemWrapper>
                                 {experience?.skills?.map((skill, index) => (
-                                    <Skill>• {skill}</Skill>
+                                    <Skill key={index}>• {skill}</Skill>
                                 ))}
                             </ItemWrapper>
                         </Skills>

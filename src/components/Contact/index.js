@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { FiSend } from 'react-icons/fi';
+import Fade from '@mui/material/Fade';
 
 const Container = styled.div`
   display: flex;
@@ -11,6 +13,8 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   z-index: 1;
+  padding: 40px 0 60px 0;
+  background: ${({ theme }) => theme.card};
   @media (max-width: 960px) {
     padding: 0px;
   }
@@ -34,13 +38,25 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font-size: 42px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   @media (max-width: 768px) {
     margin-top: 12px;
     font-size: 32px;
   }
+`;
+
+const CTA = styled.div`
+  font-size: 22px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.primary};
+  margin: 18px 0 8px 0;
+  text-align: center;
 `;
 
 const Desc = styled.div`
@@ -102,38 +118,50 @@ const ContactInputMessage = styled.textarea`
   }
 `;
 
-const ContactButton = styled.input`
+const ContactButton = styled.button`
   width: 100%;
   text-align: center;
-  background: hsla(271, 100%, 50%, 1);
-  background: linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-  background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-  background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-  padding: 13px 16px;
+  background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
+  padding: 14px 0;
   margin-top: 2px;
   border-radius: 12px;
   border: none;
-  color: ${({ theme }) => theme.text_primary};
-  font-size: 18px;
-  font-weight: 600;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: filter 0.2s;
+  &:hover, &:focus {
+    filter: brightness(1.08);
+    outline: 2px solid ${({ theme }) => theme.primary};
+  }
 `;
 
-const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Contact = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
+  const [showMailSent, setShowMailSent] = useState(false);
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     emailjs
-      .sendForm('service_tox7kqs', 'template_nv7k7mj', form.current, 'SybVGsYS52j2TfLbi')
+      .sendForm('service_yss8ol2', 'template_u2rqybq', form.current, 'HP9B63gflGBAw8cfp')
       .then(
         (result) => {
           setOpen(true);
           setError(false);
           form.current.reset();
+          setShowMailSent(true);
+          setTimeout(() => setShowMailSent(false), 4000);
         },
         (error) => {
           setError(true);
@@ -142,24 +170,52 @@ const Contact = () => {
       );
   };
 
+  // Defensive container for Snackbar to avoid null errors
+  const getSnackbarContainer = () => (typeof window !== 'undefined' && document.body ? document.body : undefined);
+
   return (
-    <Container>
+    <Container id="contact">
       <Wrapper>
-        <Title>Contact</Title>
-        <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
+        <Title>
+          <FiSend style={{ color: '#845EC2', fontSize: 36 }} />
+          Contact
+        </Title>
+        <CTA>Let's Work Together</CTA>
+        <Desc>
+          I'm always open to new opportunities, collaborations, or just a friendly chat. Fill out the form below or email me directly—let's build something great together!
+        </Desc>
+        {showMailSent && (
+          <div style={{
+            color: '#00C9A7',
+            fontWeight: 700,
+            fontSize: 20,
+            margin: '18px 0 8px 0',
+            textAlign: 'center',
+            background: 'rgba(0, 201, 167, 0.08)',
+            borderRadius: 8,
+            padding: '10px 0',
+            boxShadow: '0 2px 8px rgba(0,201,167,0.08)'
+          }}>
+            Mail sent!
+          </div>
+        )}
         <ContactForm ref={form} onSubmit={handleSubmit}>
           <ContactTitle>Email Me 🚀</ContactTitle>
           <ContactInput placeholder="Your Email" name="from_email" type="email" required />
           <ContactInput placeholder="Your Name" name="from_name" type="text" required />
           <ContactInput placeholder="Subject" name="subject" type="text" required />
           <ContactInputMessage placeholder="Message" rows="4" name="message" required />
-          <ContactButton type="submit" value="Send" />
+          <ContactButton type="submit">
+            <FiSend style={{ fontSize: 22 }} /> Send
+          </ContactButton>
         </ContactForm>
         <Snackbar
           open={open}
           autoHideDuration={6000}
           onClose={() => setOpen(false)}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          disablePortal
+          TransitionComponent={Fade}
         >
           <Alert onClose={() => setOpen(false)} severity="success">
             Email sent successfully!
@@ -170,6 +226,8 @@ const Contact = () => {
           autoHideDuration={6000}
           onClose={() => setError(false)}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          disablePortal
+          TransitionComponent={Fade}
         >
           <Alert onClose={() => setError(false)} severity="error">
             Failed to send email. Please try again.

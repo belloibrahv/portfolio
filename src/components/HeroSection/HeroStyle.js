@@ -49,9 +49,11 @@ export const HeroInnerContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1100px;
+  gap: 32px;
 
   @media (max-width: 960px) {
     flex-direction: column;
+    gap: 0;
   }
 `;
 export const HeroLeftContainer = styled.div`
@@ -78,9 +80,10 @@ export const HeroRightContainer = styled.div`
   width: 100%;
   display: flex;
   order: 2;
-  justify-content: end;
-  gap: 12px;
-  margin-top: -370px;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-top: 0;
   @media (max-width: 960px) {
     order: 1;
     justify-content: center;
@@ -97,19 +100,22 @@ export const Img = styled.img`
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 340px;
+  max-height: 340px;
   border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.primary};
+  border: 3px solid ${({ theme }) => theme.primary};
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(132,94,194,0.08);
+  object-fit: cover;
+  background: #fff;
 
   @media (max-width: 768px) {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 280px;
+    max-height: 280px;
   }
 
   @media (max-width: 640px) {
-    max-width: 280px;
-    max-height: 280px;
+    max-width: 180px;
+    max-height: 180px;
   }
 
   // Add hover effect
@@ -122,17 +128,22 @@ export const Img = styled.img`
 
 export const Title = styled.div`
   font-weight: 700;
-  font-size: 50px;
+  font-size: 38px;
   color: ${({ theme }) => theme.text_primary};
-  line-height: 68px;
+  line-height: 1.2;
+  max-width: 480px;
+  white-space: normal;
+  word-break: break-word;
   @media (max-width: 960px) {
     text-align: center;
+    font-size: 32px;
+    max-width: 90vw;
   }
-
   @media (max-width: 640px) {
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 24px;
+    line-height: 1.2;
     margin-bottom: 8px;
+    max-width: 98vw;
   }
 `;
 

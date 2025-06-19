@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { skills } from "../../data/constants";
 
@@ -44,6 +44,35 @@ export const Desc = styled.div`
   color: ${({ theme }) => theme.text_secondary};
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+`;
+
+const FilterBar = styled.div`
+  display: flex;
+  gap: 16px;
+  margin: 24px 0 0 0;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const FilterButton = styled.button`
+  background: ${({ active, theme }) =>
+    active
+      ? "linear-gradient(90deg, #00C9A7 0%, #845EC2 100%)"
+      : theme.card};
+  color: ${({ active, theme }) => (active ? theme.white : theme.text_primary)};
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: ${({ active }) =>
+    active ? "0 2px 8px rgba(132,94,194,0.12)" : "none"};
+  &:hover {
+    background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
+    color: #fff;
   }
 `;
 
@@ -101,6 +130,17 @@ const SkillItem = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
+  background: ${({ theme }) => theme.card_light};
+  box-shadow: 0 2px 8px rgba(132,94,194,0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(132,94,194,0.18);
+    background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
+    color: #fff;
+    border: 1px solid #845EC2;
+  }
   @media (max-width: 768px) {
     font-size: 14px;
     padding: 8px 12px;
@@ -116,7 +156,11 @@ const SkillImage = styled.img`
   height: 24px;
 `;
 
+const FILTERS = ["Frontend", "Backend", "Others"];
+
 const Skills = () => {
+  const [activeFilter, setActiveFilter] = useState("Frontend");
+
   return (
     <Container id="skills">
       <Wrapper>
@@ -125,20 +169,33 @@ const Skills = () => {
           Here are some of my skills on which I have been working on for the
           past 3 years.
         </Desc>
-        <SkillsContainer>
-          {skills.map((skill) => (
-            <Skill>
-              <SkillTitle key={skill.title}>{skill.title}</SkillTitle>
-              <SkillList>
-                {skill.skills.map((item) => (
-                  <SkillItem>
-                    <SkillImage src={item.image} />
-                    {item.name}
-                  </SkillItem>
-                ))}
-              </SkillList>
-            </Skill>
+        <FilterBar>
+          {FILTERS.map((filter) => (
+            <FilterButton
+              key={filter}
+              active={activeFilter === filter}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </FilterButton>
           ))}
+        </FilterBar>
+        <SkillsContainer>
+          {skills
+            .filter((skill) => skill.title === activeFilter)
+            .map((skill) => (
+              <Skill key={skill.title}>
+                <SkillTitle>{skill.title}</SkillTitle>
+                <SkillList>
+                  {skill.skills.map((item) => (
+                    <SkillItem key={item.name}>
+                      <SkillImage src={item.image} alt={item.name} />
+                      {item.name}
+                    </SkillItem>
+                  ))}
+                </SkillList>
+              </Skill>
+            ))}
         </SkillsContainer>
       </Wrapper>
     </Container>

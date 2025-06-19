@@ -142,6 +142,17 @@ const EducationCard = ({ education }) => {
             <Grade><b>Grade: </b>{education.grade}</Grade>
             <Description>
                 <Span>{education.desc}</Span>
+                {education.achievements && education.achievements.length > 0 && (
+                  <>
+                    <br />
+                    <b>Achievements:</b>
+                    <ul style={{ margin: '8px 0 0 18px', padding: 0 }}>
+                      {education.achievements.map((ach, idx) => (
+                        <li key={idx} style={{ fontSize: '14px', color: '#666' }}>{ach}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
             </Description>
         </Card>
     )
