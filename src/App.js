@@ -15,6 +15,7 @@ import ProjectDetails from "./components/ProjectDetails";
 import styled from "styled-components";
 import Resume from "./components/Resume";
 import Chatbot from "./components/Chatbot";
+import Blog from "./components/Blog";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -30,6 +31,7 @@ const Wrapper = styled.div`
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
+  const [openBlogModal, setOpenBlogModal] = useState({ state: false, blog: null });
   console.log(openModal)
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -44,6 +46,7 @@ function App() {
           </Wrapper>
           <Projects openModal={openModal} setOpenModal={setOpenModal} />
           <Wrapper>
+            <Blog openBlogModal={openBlogModal} setOpenBlogModal={setOpenBlogModal} />
             <Education />
             <Contact />
           </Wrapper>

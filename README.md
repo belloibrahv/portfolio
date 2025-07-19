@@ -10,6 +10,16 @@ Welcome to my portfolio repository! This is the source code for my personal web 
 
 Check out the live version of my portfolio: [belloibrahim.vercel.app](https://belloibrahim.vercel.app)
 
+## ✨ Features
+
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Dark/Light Theme**: Toggle between dark and light themes
+- **Interactive Projects**: Detailed project showcases with modals
+- **Blog Section**: Interactive blog carousel with modal viewing
+- **Smooth Animations**: Engaging animations and transitions
+- **Contact Form**: Functional contact form with email integration
+- **Chatbot**: AI-powered chatbot for visitor interaction
+
 ## 🚀 Technologies Used
 
 - ![React.js](https://img.shields.io/badge/React.js-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) – Frontend framework for building the UI
@@ -41,7 +51,20 @@ Check out the live version of my portfolio: [belloibrahim.vercel.app](https://be
 
 ## 📁 **Project Structure**
 - `src/`: Contains all the source code for the portfolio.
+  - `components/`: React components including the new Blog section
+  - `data/`: Data files including blog posts and constants
+  - `utils/`: Utility functions and theme configurations
 - `public/`: Static assets like images, favicons, etc.
+
+## 🎯 **Key Components**
+
+- **Hero Section**: Introduction and call-to-action
+- **Skills**: Technical skills showcase
+- **Experience**: Work history and achievements
+- **Projects**: Portfolio projects with detailed modals
+- **Blog**: Interactive blog carousel with modal viewing
+- **Education**: Academic background
+- **Contact**: Contact form and information
 
 ## 💬 **Contact**
 Feel free to connect with me through the portfolio or [LinkedIn](https://www.linkedin.com/in/ibrahim-bello-8951ba187/).

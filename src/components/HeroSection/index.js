@@ -30,12 +30,12 @@ const HeroSection = () => {
             <Title>
               👋🏽 Hi, I'm {Bio.name}
               <br />
-              <span style={{ fontWeight: 400, fontSize: '28px', color: '#888' }}>
-                Building fast, scalable web apps for global startups.
+              <span style={{ fontWeight: 400, fontSize: '20px', color: '#888' }}>
+                Building fast, scalable web apps for both local and global businesses.
               </span>
             </Title>
-            <SubTitle style={{ marginTop: 12, marginBottom: 18, fontSize: 22, color: '#666' }}>
-              Full-stack developer from Nigeria, passionate about turning ideas into reality for remote teams worldwide.
+            <SubTitle style={{ marginTop: 12, marginBottom: 18, fontSize: 13, fontStyle: 'italic', color: '#666' }}>
+              My passion is bringing order to the digital world. I craft software that grows with its users, handling both what you see and what powers it from behind. I'm all about making complex things simple and beautiful through smart design and clever automation.
             </SubTitle>
             <TextLoop>
               <span style={{ color: '#888', fontWeight: 400 }}>I am a</span>
@@ -43,10 +43,9 @@ const HeroSection = () => {
                 <Typewriter
                   options={{
                     strings: [
-                      "React & Django Specialist",
-                      "AI Tools Builder",
-                      "Remote Team Collaborator",
-                      "Startup Problem Solver"
+                      "React Specialist",
+                      "Django Specialist",
+                      "Software Engineer"
                     ],
                     autoStart: true,
                     loop: true,
