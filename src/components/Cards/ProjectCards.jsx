@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Card = styled.div`
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   min-height: 520px;
   background-color: ${({ theme }) => theme.card};
   cursor: pointer;
@@ -14,10 +15,18 @@ const Card = styled.div`
   flex-direction: column;
   gap: 16px;
   transition: all 0.4s cubic-bezier(.4,2,.6,1);
+  margin: 0 auto;
+  
   &:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 0 50px 8px rgba(0,0,0,0.18);
     filter: brightness(1.08);
+  }
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+    min-height: 480px;
+    padding: 24px 16px 16px 16px;
   }
 `;
 

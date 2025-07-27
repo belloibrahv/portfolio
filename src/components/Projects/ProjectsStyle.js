@@ -86,63 +86,92 @@ export const Divider = styled.div`
 `
 
 
-export const CardContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 32px;
-    grid-auto-rows: minmax(300px, auto);
+export const CarouselContainer = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     
-    /* Creative staggered layout */
-    & > *:nth-child(3n+1) {
-        grid-row: span 1;
-        transform: translateY(-10px);
-    }
-    
-    & > *:nth-child(3n+2) {
-        grid-row: span 1;
-        transform: translateY(10px);
-    }
-    
-    & > *:nth-child(3n+3) {
-        grid-row: span 1;
-        transform: translateY(-5px);
-    }
-    
-    /* Responsive breakpoints */
-    @media (max-width: 1200px) {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        grid-gap: 28px;
-    }
-    
-    @media (max-width: 960px) {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 24px;
+    /* Slick carousel customization */
+    .slick-dots {
+        bottom: -50px;
         
-        /* Reset transforms on mobile for better readability */
-        & > * {
-            transform: none !important;
+        li button:before {
+            color: ${({ theme }) => theme.primary};
+            font-size: 14px;
+        }
+        
+        li.slick-active button:before {
+            color: ${({ theme }) => theme.primary};
+        }
+    }
+    
+    .slick-prev, .slick-next {
+        z-index: 2;
+        width: 40px;
+        height: 40px;
+        
+        &:before {
+            font-size: 24px;
+            color: ${({ theme }) => theme.primary};
+        }
+    }
+    
+    .slick-prev {
+        left: -50px;
+    }
+    
+    .slick-next {
+        right: -50px;
+    }
+    
+    .slick-slide {
+        padding: 0 15px;
+        
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 1200px) {
+        .slick-prev {
+            left: -25px;
+        }
+        
+        .slick-next {
+            right: -25px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        padding: 0 10px;
+        
+        .slick-prev, .slick-next {
+            display: none !important;
+        }
+        
+        .slick-slide {
+            padding: 0 8px;
+        }
+        
+        .slick-dots {
+            bottom: -40px;
+            
+            li button:before {
+                font-size: 12px;
+            }
         }
     }
     
     @media (max-width: 640px) {
-        grid-template-columns: 1fr;
-        grid-gap: 20px;
-        padding: 0 15px;
-    }
-    
-    /* Hover effect for creative interaction */
-    & > *:hover {
-        transform: translateY(0px) scale(1.02);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 10;
-    }
-    
-    /* Smooth transitions */
-    & > * {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0 5px;
+        
+        .slick-slide {
+            padding: 0 5px;
+        }
     }
 `;

@@ -284,6 +284,38 @@ export const projects = [
     ]
   },
   {
+    id: 12,
+    title: "SAHCO PLC",
+    date: "2024",
+    description:
+      "A comprehensive corporate website for SAHCO PLC, Nigeria's premium ground handling partner. The platform features multi-regional operations management, investor relations portal, career management system, and detailed service showcases for aviation ground handling services including passenger handling, cargo operations, and VIP lounge services.",
+    image:
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+    tags: [
+      "Web Development",
+      "Corporate Website",
+      "WordPress",
+      "PHP",
+      "JavaScript",
+      "HTML/CSS",
+      "Responsive Design",
+      "CMS",
+      "Aviation Industry"
+    ],
+    category: "web app",
+    webapp: "https://sahcoplc.com/",
+    features: [
+      "Multi-regional operations portal (HQ, Central, Northern, Eastern, Western Nigeria)",
+      "Comprehensive service showcase (Passenger, Cargo, Ramp Operations)",
+      "Investor relations section with financial reports and AGM information",
+      "Career portal with job listings and application system",
+      "Corporate governance and policy management",
+      "24/7 contact and support system",
+      "Media center with awards, certifications, and press releases",
+      "VIP lounge and hospitality services booking"
+    ]
+  },
+  {
     id: 9,
     title: "Aleeyah",
     date: "Appril 2024",
@@ -378,6 +410,32 @@ export const projects = [
         github: "https://github.com/abdulfataiaka/",
       },
     ],
+  },
+  {
+    id: 13,
+    title: "New Machine Learning Project",
+    date: "2026",
+    description:
+      "A highly innovative machine learning application designed to provide solutions to real-world challenges using data-driven approaches. Explore dynamic data insights and modern AI techniques.",
+    image: "varuna_tech_cover.jpg",
+    tags: [
+      "Machine Learning",
+      "Python",
+      "AI",
+      "Data Analysis",
+      "Integration",
+      "Dashboard"
+    ],
+    category: "machine learning",
+    github: "https://github.com/your-repo/new-ml-project",
+    webapp: "https://rml-zkxc.onrender.com/",
+    features: [
+      "Advanced machine learning algorithms",
+      "User-friendly interface",
+      "Scalable architecture",
+      "Data-driven insights",
+      "Real-time analytics"
+    ]
   },
 ];
 
