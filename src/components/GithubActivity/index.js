@@ -2,34 +2,67 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Typography, Box, CircularProgress } from "@mui/material";
 
-const GitHubActivity = () => {
+const GitHubActivity = React.memo(() => {
   const [mergedPRs, setMergedPRs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const username = "belloibrahv";
+  const cacheKey = `github_prs_${username}`;
+  const cacheExpiry = 5 * 60 * 1000; // 5 minutes
 
-  // Fetch merged pull requests
+  // Fetch merged pull requests with caching
   useEffect(() => {
     const fetchMergedPRs = async () => {
+      // Check cache first
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        if (Date.now() - timestamp < cacheExpiry) {
+          setMergedPRs(data);
+          setLoading(false);
+          return;
+        }
+      }
+
       try {
         const prResponse = await axios.get(
-          `https://api.github.com/search/issues?q=author:${username}+is:pr+is:merged&per_page=3`
+          `https://api.github.com/search/issues?q=author:${username}+is:pr+is:merged&per_page=3`,
+          { timeout: 10000 } // 10 second timeout
         );
-        setMergedPRs(prResponse.data.items.slice(0, 3)); // Get only the latest 3 merged PRs
+        const prs = prResponse.data.items.slice(0, 3);
+        setMergedPRs(prs);
+        
+        // Cache the result
+        localStorage.setItem(cacheKey, JSON.stringify({
+          data: prs,
+          timestamp: Date.now()
+        }));
       } catch (error) {
         console.error("Error fetching merged PRs:", error);
+        setError("Failed to load GitHub activity");
       } finally {
         setLoading(false);
       }
     };
 
     fetchMergedPRs();
-  }, [username]);
+  }, [username, cacheKey, cacheExpiry]);
 
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="200px">
         <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box my={4}>
+        <Typography variant="body2" color="error">
+          {error}
+        </Typography>
       </Box>
     );
   }
@@ -67,6 +100,6 @@ const GitHubActivity = () => {
       )}
     </Box>
   );
-};
+});
 
 export default GitHubActivity;

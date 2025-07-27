@@ -1,21 +1,24 @@
 import { ThemeProvider } from "styled-components";
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import { darkTheme, lightTheme } from './utils/Themes.js'
 import Navbar from "./components/Navbar";
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import HeroSection from "./components/HeroSection";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import ProjectDetails from "./components/ProjectDetails";
 import styled from "styled-components";
-import Resume from "./components/Resume";
-import Chatbot from "./components/Chatbot";
-import Blog from "./components/Blog";
+import { CircularProgress, Box } from "@mui/material";
+
+// Lazy load components for better performance
+const Skills = lazy(() => import("./components/Skills"));
+const Projects = lazy(() => import("./components/Projects"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+const Experience = lazy(() => import("./components/Experience"));
+const Education = lazy(() => import("./components/Education"));
+const ProjectDetails = lazy(() => import("./components/ProjectDetails"));
+const Resume = lazy(() => import("./components/Resume"));
+const Chatbot = lazy(() => import("./components/Chatbot"));
+const Blog = lazy(() => import("./components/Blog"));
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -28,32 +31,54 @@ const Wrapper = styled.div`
   width: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 100%,30% 98%, 0 100%);
 `
+
+// Loading component
+const LoadingSpinner = () => (
+  <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+    <CircularProgress size={40} />
+  </Box>
+);
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   const [openBlogModal, setOpenBlogModal] = useState({ state: false, blog: null });
-  console.log(openModal)
+  
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Router >
         <Navbar />
         <Body>
           <HeroSection />
-          <Resume />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Resume />
+          </Suspense>
           <Wrapper>
-            <Skills />
-            <Experience />
+            <Suspense fallback={<LoadingSpinner />}>
+              <Skills />
+              <Experience />
+            </Suspense>
           </Wrapper>
-          <Projects openModal={openModal} setOpenModal={setOpenModal} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Projects openModal={openModal} setOpenModal={setOpenModal} />
+          </Suspense>
           <Wrapper>
-            <Blog openBlogModal={openBlogModal} setOpenBlogModal={setOpenBlogModal} />
-            <Education />
-            <Contact />
+            <Suspense fallback={<LoadingSpinner />}>
+              <Blog openBlogModal={openBlogModal} setOpenBlogModal={setOpenBlogModal} />
+              <Education />
+              <Contact />
+            </Suspense>
           </Wrapper>
-          <Footer />
-          <Chatbot />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Footer />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Chatbot />
+          </Suspense>
           {openModal.state &&
-            <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+            </Suspense>
           }
         </Body>
       </Router>

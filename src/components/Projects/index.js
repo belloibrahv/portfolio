@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import Slider from 'react-slick'
 import { Container, Wrapper, Title, Desc, CarouselContainer, ToggleButtonGroup, ToggleButton, Divider } from './ProjectsStyle'
 import ProjectCard from '../Cards/ProjectCards'
@@ -8,19 +7,24 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 
-const Projects = ({openModal,setOpenModal}) => {
+const Projects = React.memo(({openModal,setOpenModal}) => {
   const [toggle, setToggle] = useState('all');
   
-  // Get filtered projects based on toggle
-  const getFilteredProjects = () => {
+  // Memoize filtered projects to avoid recalculation on every render
+  const filteredProjects = useMemo(() => {
     if (toggle === 'all') {
       return projects;
     }
     return projects.filter((item) => item.category === toggle);
-  };
+  }, [toggle]);
 
-  // Carousel settings
-  const carouselSettings = {
+  // Memoize toggle handler
+  const handleToggle = useCallback((newToggle) => {
+    setToggle(newToggle);
+  }, []);
+
+  // Memoize carousel settings
+  const carouselSettings = useMemo(() => ({
     dots: true,
     infinite: true,
     speed: 500,
@@ -47,9 +51,7 @@ const Projects = ({openModal,setOpenModal}) => {
         }
       }
     ]
-  };
-
-  const filteredProjects = getFilteredProjects();
+  }), []);
 
   return (
     <Container id="projects">
@@ -60,27 +62,27 @@ const Projects = ({openModal,setOpenModal}) => {
         </Desc>
         <ToggleButtonGroup >
           {toggle === 'all' ?
-            <ToggleButton active value="all" onClick={() => setToggle('all')}>All</ToggleButton>
+            <ToggleButton active value="all" onClick={() => handleToggle('all')}>All</ToggleButton>
             :
-            <ToggleButton value="all" onClick={() => setToggle('all')}>All</ToggleButton>
+            <ToggleButton value="all" onClick={() => handleToggle('all')}>All</ToggleButton>
           }
           <Divider />
           {toggle === 'web app' ?
-            <ToggleButton active value="web app" onClick={() => setToggle('web app')}>WEB APP'S</ToggleButton>
+            <ToggleButton active value="web app" onClick={() => handleToggle('web app')}>WEB APP'S</ToggleButton>
             :
-            <ToggleButton value="web app" onClick={() => setToggle('web app')}>WEB APP'S</ToggleButton>
+            <ToggleButton value="web app" onClick={() => handleToggle('web app')}>WEB APP'S</ToggleButton>
           }
           <Divider />
           {toggle === 'android app' ?
-            <ToggleButton active value="android app" onClick={() => setToggle('android app')}>ANDROID APP'S</ToggleButton>
+            <ToggleButton active value="android app" onClick={() => handleToggle('android app')}>ANDROID APP'S</ToggleButton>
             :
-            <ToggleButton value="android app" onClick={() => setToggle('android app')}>ANDROID APP'S</ToggleButton>
+            <ToggleButton value="android app" onClick={() => handleToggle('android app')}>ANDROID APP'S</ToggleButton>
           }
           <Divider />
           {toggle === 'machine learning' ?
-            <ToggleButton active value="machine learning" onClick={() => setToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
+            <ToggleButton active value="machine learning" onClick={() => handleToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
             :
-            <ToggleButton value="machine learning" onClick={() => setToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
+            <ToggleButton value="machine learning" onClick={() => handleToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
           }
         </ToggleButtonGroup>
         <CarouselContainer>
@@ -101,6 +103,6 @@ const Projects = ({openModal,setOpenModal}) => {
       </Wrapper>
     </Container>
   )
-}
+});
 
-export default Projects
+export default Projects;

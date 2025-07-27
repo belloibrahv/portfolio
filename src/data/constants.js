@@ -24,11 +24,11 @@ export const skills = [
         image:
           "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K",
       },
-      // {
-      //   name: "Redux",
-      //   image:
-      //     "https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg",
-      // },
+      {
+        name: "Redux",
+        image:
+          "https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg",
+      },
       {
         name: "React Query",
         image:
@@ -368,29 +368,29 @@ export const projects = [
     category: "web app",
     // github: "https://github.com/smart-team-buildai/aleeyah.git",
     webapp: "https://custodianplc.com.ng/",
-    // member: [
-    //   {
-    //     name: "Muhammad-Nabeel",
-    //     img: "https://avatars.githubusercontent.com/u/93738997?v=4",
-    //     linkedin: "https://www.linkedin.com/in/olaoye-md-nabeel/",
-    //     github: "https://github.com/dtechbro",
-    //   },
-    //   {
-    //     name: "Samuel Ganiu",
-    //     img: "https://avatars.githubusercontent.com/u/111003107?v=4",
-    //     linkedin: "https://www.linkedin.com/in/samuel-ganiu/",
-    //     github: "https://github.com/SirhmVFX",
-    //   },
-    // ],
+    member: [
+      {
+        name: "Ibrahim Bello",
+        img: "https://avatars.githubusercontent.com/u/93738997?v=4",
+        linkedin: "https://www.linkedin.com/in/olaoye-md-nabeel/",
+        github: "https://www.linkedin.com/in/ibrahim-bello-8951ba187/",
+      },
+      {
+        name: "Abdulfatai Aka",
+        img: "https://avatars.githubusercontent.com/u/32123313?v=4",
+        linkedin: "https://www.linkedin.com/in/rishav-chanda-b89a791b3/",
+        github: "https://github.com/abdulfataiaka/",
+      },
+    ],
   },
   {
     id: 0,
-    title: "Ractor",
-    date: "Apr 2023 - May 2023",
+    title: "Water Parameter",
+    date: "Apr 2023 - Jan 2025",
     description:
       "Developed a full-stack web application that allows users to Manage and expose water quality parameters measurements and insights to our customers",
-    // image:
-    //   "https://i.postimg.cc/KcpJGm8f/Screenshot-2024-05-08-at-11-20-17.png",
+    image:
+     "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Fvaruna&psig=AOvVaw2E08b6HlBtfz-7Zg9hujzr&ust=1753742813708000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCIja4qGP3o4DFQAAAAAdAAAAABAK",
     tags: [
       "React Js",
       "Typescript",
@@ -409,32 +409,43 @@ export const projects = [
         linkedin: "https://www.linkedin.com/in/rishav-chanda-b89a791b3/",
         github: "https://github.com/abdulfataiaka/",
       },
+      {
+        name: "Varuna Tech.",
+        img: "https://www.linkedin.com/company/varuna-tech/posts/?feedView=all",
+        linkedin: "https://www.linkedin.com/in/rishav-chanda-b89a791b3/",
+        github: "https://github.com/abdulfataiaka/",
+      },
     ],
   },
   {
     id: 13,
-    title: "New Machine Learning Project",
-    date: "2026",
+    title: "AI-Powered Career Recommendation System",
+    date: "2025",
     description:
-      "A highly innovative machine learning application designed to provide solutions to real-world challenges using data-driven approaches. Explore dynamic data insights and modern AI techniques.",
+      "An advanced AI-driven platform that provides personalized career recommendations using cutting-edge machine learning algorithms. This system analyzes various data points to suggest optimal career paths, enhancing decision-making for individuals seeking guidance in their professional development.",
     image: "varuna_tech_cover.jpg",
     tags: [
       "Machine Learning",
       "Python",
-      "AI",
-      "Data Analysis",
-      "Integration",
-      "Dashboard"
+      "Scikit-learn",
+      "Flask",
+      "Career Analytics",
+      "Natural Language Processing",
+      "Data Visualization",
+      "Recommendation Engine",
+      "SQLite"
     ],
     category: "machine learning",
-    github: "https://github.com/your-repo/new-ml-project",
+    github: "https://github.com/belloibrahv/rml.git",
     webapp: "https://rml-zkxc.onrender.com/",
     features: [
-      "Advanced machine learning algorithms",
-      "User-friendly interface",
-      "Scalable architecture",
-      "Data-driven insights",
-      "Real-time analytics"
+      "Intelligent career path analysis using ML algorithms",
+      "Skills gap identification and development recommendations",
+      "Industry trend analysis and market demand forecasting",
+      "Personalized learning resource suggestions",
+      "Interactive dashboard with career progression visualization",
+      "Professional profile assessment and optimization",
+      "Salary prediction and compensation analysis"
     ]
   },
 ];

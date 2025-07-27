@@ -1,7 +1,7 @@
 import React from 'react';
 import { Div } from './HeroBgAnimationStyle';
 
-const HeroBgAnimation = () => (
+const HeroBgAnimation = React.memo(() => (
   <Div>
     <svg
       className="BgAnimation__svg"
@@ -361,6 +361,6 @@ const HeroBgAnimation = () => (
       </defs>
     </svg>
   </Div>
-);
+));
 
 export default HeroBgAnimation;
