@@ -38,7 +38,13 @@ const Blog = ({ openBlogModal, setOpenBlogModal }) => {
   };
 
   const handleCardClick = (blog) => {
-    setOpenBlogModal({ state: true, blog: blog });
+    // If the blog has a URL (external link), open it in a new tab
+    if (blog.url) {
+      window.open(blog.url, '_blank', 'noopener,noreferrer');
+    } else {
+      // Otherwise, open the modal for internal content
+      setOpenBlogModal({ state: true, blog: blog });
+    }
   };
 
   const handleMouseEnter = () => {
