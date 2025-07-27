@@ -254,6 +254,36 @@ export const education = [
 
 export const projects = [
   {
+    id: 11,
+    title: "Loan Defaulter Prediction System",
+    date: "July 2025",
+    description:
+      "A comprehensive Credit Risk Assessment System that leverages machine learning algorithms to predict loan default probability. The system empowers financial institutions to make informed lending decisions by analyzing applicant financial profiles and providing real-time risk assessments with detailed analytics.",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn",
+      "Flask",
+      "HTML/CSS",
+      "JavaScript",
+      "Data Science",
+      "Risk Assessment",
+      "Render"
+    ],
+    category: "machine learning",
+    github: "https://github.com/belloibrahv/loan-defaulter-prediction",
+    webapp: "https://loan-defaulter-prediction-web-app.onrender.com/",
+    features: [
+      "Real-time loan default risk prediction",
+      "Interactive web interface for easy assessment",
+      "Comprehensive financial profile analysis",
+      "Instant risk scoring and recommendations",
+      "User-friendly dashboard with analytics"
+    ]
+  },
+  {
     id: 9,
     title: "Aleeyah",
     date: "Appril 2024",

@@ -87,19 +87,62 @@ export const Divider = styled.div`
 
 
 export const CardContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
-    flex-wrap: wrap;
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    // grid-gap: 32px;
-    // grid-auto-rows: minmax(100px, auto);
-    // @media (max-width: 960px) {
-    //     grid-template-columns: repeat(2, 1fr);
-    // }
-    // @media (max-width: 640px) {
-    //     grid-template-columns: repeat(1, 1fr);
-    // }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 32px;
+    grid-auto-rows: minmax(300px, auto);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    /* Creative staggered layout */
+    & > *:nth-child(3n+1) {
+        grid-row: span 1;
+        transform: translateY(-10px);
+    }
+    
+    & > *:nth-child(3n+2) {
+        grid-row: span 1;
+        transform: translateY(10px);
+    }
+    
+    & > *:nth-child(3n+3) {
+        grid-row: span 1;
+        transform: translateY(-5px);
+    }
+    
+    /* Responsive breakpoints */
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-gap: 28px;
+    }
+    
+    @media (max-width: 960px) {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-gap: 24px;
+        
+        /* Reset transforms on mobile for better readability */
+        & > * {
+            transform: none !important;
+        }
+    }
+    
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+        padding: 0 15px;
+    }
+    
+    /* Hover effect for creative interaction */
+    & > *:hover {
+        transform: translateY(0px) scale(1.02);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10;
+    }
+    
+    /* Smooth transitions */
+    & > * {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 `;
