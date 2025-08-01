@@ -33,6 +33,20 @@ export const Title = styled.div`
   font-weight: 600;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 4px;
+    bottom: -10px;
+    left: 20%;
+    background: linear-gradient(270deg, #854CE6 0%, rgba(60, 0, 150, 0.8) 100%);
+    border-radius: 2px;
+  }
+  
   @media (max-width: 768px) {
     margin-top: 12px;
     font-size: 32px;
@@ -50,16 +64,14 @@ export const Desc = styled.div`
   }
 `;
 
-export const CarouselContainer = styled.div`
-  position: relative;
+export const ArticlesContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
-  margin: 40px auto;
-  overflow: hidden;
-  padding: 0 60px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+  padding: 0 20px;
   
   @media (max-width: 768px) {
-    padding: 0 40px;
+    padding: 0 20px;
   }
 `;
 
@@ -73,88 +85,125 @@ export const CarouselTrack = styled.div`
   }
 `;
 
-export const BlogCard = styled.div`
-  flex: 0 0 calc(33.333% - 16px);
-  min-width: 320px;
+export const ArticleCard = styled.div`
   background-color: ${({ theme }) => theme.card};
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
   
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   }
   
   @media (max-width: 768px) {
-    flex: 0 0 calc(100% - 16px);
-    min-width: 280px;
+    flex-direction: column;
   }
 `;
 
-export const CardImage = styled.img`
-  width: 100%;
-  height: 200px;
+export const ArticleImage = styled.img`
+  width: 40%;
+  height: 250px;
   object-fit: cover;
   transition: transform 0.3s ease;
   
-  ${BlogCard}:hover & {
-    transform: scale(1.05);
+  ${ArticleCard}:hover & {
+    transform: scale(1.03);
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 200px;
   }
 `;
 
-export const CardContent = styled.div`
-  padding: 24px;
+export const ArticleContent = styled.div`
+  padding: 30px;
+  flex: 1;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
-export const CardTitle = styled.h3`
-  font-size: 18px;
-  font-weight: 600;
+export const ArticleTitle = styled.h3`
+  font-size: 22px;
+  font-weight: 700;
   color: ${({ theme }) => theme.text_primary};
-  margin-bottom: 12px;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+  
+  ${ArticleCard}:hover & {
+    color: ${({ theme }) => theme.primary};
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
-export const CardDescription = styled.p`
-  font-size: 14px;
+export const ArticleDescription = styled.p`
+  font-size: 15px;
   color: ${({ theme }) => theme.text_secondary};
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
 
-export const CardMeta = styled.div`
+export const ArticleMeta = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 13px;
   color: ${({ theme }) => theme.text_secondary + '80'};
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
+  
+  span {
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '•';
+      margin: 0 5px;
+      color: ${({ theme }) => theme.primary};
+    }
+    
+    &:first-child::before {
+      display: none;
+    }
+  }
 `;
 
-export const CardTags = styled.div`
+export const ArticleTags = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
+  margin-top: 15px;
 `;
 
 export const Tag = styled.span`
   background: ${({ theme }) => theme.primary + '15'};
   color: ${({ theme }) => theme.primary};
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   font-weight: 500;
+  transition: all 0.2s ease;
+  
+  ${ArticleCard}:hover & {
+    background: ${({ theme }) => theme.primary};
+    color: white;
+  }
 `;
 
 export const CarouselButton = styled.button`

@@ -1,163 +1,97 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Container, Wrapper, Title, Desc, CarouselContainer, CarouselTrack, BlogCard, CardImage, CardContent, CardTitle, CardDescription, CardMeta, CardTags, Tag, CarouselButton, CarouselDots, Dot, BlogModal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalClose, ModalImage, ModalMeta, ModalTags } from './BlogStyle';
+import React from 'react';
+import { 
+  Container, 
+  Wrapper, 
+  Title, 
+  Desc, 
+  ArticlesContainer, 
+  ArticleCard, 
+  ArticleImage, 
+  ArticleContent, 
+  ArticleTitle, 
+  ArticleDescription, 
+  ArticleMeta, 
+  ArticleTags, 
+  Tag 
+} from './BlogStyle';
 import { blogs } from '../../data/constants';
 
-const Blog = ({ openBlogModal, setOpenBlogModal }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const carouselRef = useRef(null);
-  const autoPlayRef = useRef(null);
-
-  const totalSlides = blogs.length;
-  const slidesToShow = 3;
-
-  useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % (totalSlides - slidesToShow + 1));
-      }, 4000);
-    }
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, [isAutoPlaying, totalSlides, slidesToShow]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - slidesToShow));
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => Math.max(prev - 1, 0));
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  const handleCardClick = (blog) => {
-    // If the blog has a URL (external link), open it in a new tab
+const Blog = () => {
+  const handleArticleClick = (blog) => {
+    // If the blog has a URL, open it in a new tab
     if (blog.url) {
       window.open(blog.url, '_blank', 'noopener,noreferrer');
-    } else {
-      // Otherwise, open the modal for internal content
-      setOpenBlogModal({ state: true, blog: blog });
     }
   };
 
-  const handleMouseEnter = () => {
-    setIsAutoPlaying(false);
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
+  // Format date to a more readable format (e.g., "June 15, 2024")
+  const formatDate = (dateString) => {
+    try {
+      // Handle different date formats that might come from the blog data
+      let date;
+      
+      // Try parsing as ISO date string first
+      date = new Date(dateString);
+      
+      // If invalid, try parsing as month year (e.g., "June 2024")
+      if (isNaN(date.getTime())) {
+        const [month, year] = dateString.split(' ');
+        const monthIndex = new Date(Date.parse(month + ' 1, 2000')).getMonth();
+        date = new Date(year, monthIndex, 1);
+      }
+      
+      // Format the date
+      const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+      
+      return date.toLocaleDateString('en-US', options);
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return dateString; // Return original string if parsing fails
     }
-  };
-
-  const handleMouseLeave = () => {
-    setIsAutoPlaying(true);
   };
 
   return (
-    <Container id="blog">
+    <Container id="articles">
       <Wrapper>
-        <Title>Latest Blog Posts</Title>
+        <Title>Latest Articles</Title>
         <Desc>
-          Sharing insights, tutorials, and thoughts on web development, technology, and software engineering.
+          Sharing insights, tutorials, and thoughts on technology, software development, and more.
         </Desc>
         
-        <CarouselContainer 
-          ref={carouselRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <CarouselButton 
-            onClick={prevSlide} 
-            disabled={currentSlide === 0}
-            className="prev"
-          >
-            ‹
-          </CarouselButton>
-          
-          <CarouselTrack 
-            style={{ 
-              transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)` 
-            }}
-          >
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} onClick={() => handleCardClick(blog)}>
-                <CardImage src={blog.image} alt={blog.title} />
-                <CardContent>
-                  <CardTitle>{blog.title}</CardTitle>
-                  <CardDescription>{blog.description}</CardDescription>
-                  <CardMeta>
-                    <span>{blog.date}</span>
-                    <span>•</span>
-                    <span>{blog.readTime}</span>
-                    <span>•</span>
-                    <span>{blog.category}</span>
-                  </CardMeta>
-                  <CardTags>
-                    {blog.tags.slice(0, 3).map((tag, index) => (
-                      <Tag key={index}>{tag}</Tag>
-                    ))}
-                  </CardTags>
-                </CardContent>
-              </BlogCard>
-            ))}
-          </CarouselTrack>
-          
-          <CarouselButton 
-            onClick={nextSlide} 
-            disabled={currentSlide >= totalSlides - slidesToShow}
-            className="next"
-          >
-            ›
-          </CarouselButton>
-        </CarouselContainer>
-
-        <CarouselDots>
-          {Array.from({ length: totalSlides - slidesToShow + 1 }, (_, index) => (
-            <Dot 
-              key={index} 
-              active={index === currentSlide}
-              onClick={() => goToSlide(index)}
-            />
+        <ArticlesContainer>
+          {blogs.map((blog) => (
+            <ArticleCard 
+              key={blog.id} 
+              onClick={() => handleArticleClick(blog)}
+              aria-label={`Read article: ${blog.title}`}
+            >
+              <ArticleImage 
+                src={blog.image} 
+                alt={blog.title} 
+                loading="lazy"
+              />
+              <ArticleContent>
+                <ArticleTitle>{blog.title}</ArticleTitle>
+                <ArticleDescription>{blog.description}</ArticleDescription>
+                <ArticleMeta>
+                  <span>{formatDate(blog.date)}</span>
+                  <span>{blog.readTime}</span>
+                  <span>{blog.category}</span>
+                </ArticleMeta>
+                <ArticleTags>
+                  {blog.tags.map((tag, index) => (
+                    <Tag key={index}>{tag}</Tag>
+                  ))}
+                </ArticleTags>
+              </ArticleContent>
+            </ArticleCard>
           ))}
-        </CarouselDots>
+        </ArticlesContainer>
       </Wrapper>
-
-      {openBlogModal.state && (
-        <BlogModal>
-          <ModalOverlay onClick={() => setOpenBlogModal({ state: false, blog: null })} />
-          <ModalContent>
-            <ModalClose onClick={() => setOpenBlogModal({ state: false, blog: null })}>
-              ×
-            </ModalClose>
-            <ModalImage src={openBlogModal.blog.image} alt={openBlogModal.blog.title} />
-            <ModalHeader>
-              <h2>{openBlogModal.blog.title}</h2>
-              <ModalMeta>
-                <span>{openBlogModal.blog.date}</span>
-                <span>•</span>
-                <span>{openBlogModal.blog.readTime}</span>
-                <span>•</span>
-                <span>{openBlogModal.blog.category}</span>
-                <span>•</span>
-                <span>By {openBlogModal.blog.author}</span>
-              </ModalMeta>
-              <ModalTags>
-                {openBlogModal.blog.tags.map((tag, index) => (
-                  <Tag key={index}>{tag}</Tag>
-                ))}
-              </ModalTags>
-            </ModalHeader>
-            <ModalBody 
-              dangerouslySetInnerHTML={{ __html: openBlogModal.blog.content }}
-            />
-          </ModalContent>
-        </BlogModal>
-      )}
     </Container>
   );
 };

@@ -470,36 +470,61 @@ export const TimeLineData = [
 export const blogs = [
   {
     id: 1,
+    title: "Database Modeling Explained",
+    description: "A comprehensive guide to understanding database modeling concepts, best practices, and real-world applications.",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", // Database modeling concept
+    date: "June 2024",
+    author: "Ibrahim Bello",
+    category: "Database",
+    readTime: "6 min read",
+    tags: ["Database", "Modeling", "SQL", "NoSQL", "Design Patterns"],
+    url: "https://medium.com/@belloibrahv/database-modelling-explained-69456bcd0b70"
+  },
+  {
+    id: 2,
+    title: "High-Level Overview of Database Architecture",
+    description: "Exploring the fundamental components and design principles behind modern database systems.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", // Database architecture
+    date: "May 2024",
+    author: "Ibrahim Bello",
+    category: "Database",
+    readTime: "8 min read",
+    tags: ["Database", "Architecture", "System Design"],
+    url: "https://medium.com/@belloibrahv/high-level-overview-of-database-architecture-9f67275b4449"
+  },
+  {
+    id: 3,
+    title: "Why Developers Often Fail to Follow Requirements",
+    description: "A comprehensive breakdown of the common challenges and solutions in requirement analysis and implementation.",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", // Requirements analysis
+    date: "April 2024",
+    author: "Ibrahim Bello",
+    category: "Software Development",
+    readTime: "9 min read",
+    tags: ["Requirements", "Best Practices", "Project Management", "Communication"],
+    url: "https://medium.com/@belloibrahv/why-developers-often-fail-to-follow-requirements-a-comprehensive-breakdown-8a811997422c"
+  },
+  {
+    id: 4,
+    title: "Python Version Management Using Pyenv",
+    description: "A practical guide to managing multiple Python versions and virtual environments with Pyenv.",
+    image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", // Python code
+    date: "March 2024",
+    author: "Ibrahim Bello",
+    category: "Python",
+    readTime: "6 min read",
+    tags: ["Python", "Development", "Tools"],
+    url: "https://medium.com/@belloibrahv/python-version-management-using-pyenv-runbook-58f0e793e852"
+  },
+  {
+    id: 5,
     title: "Mastering Code Validation: Best Practices for Error-Free Applications",
-    description: "Learn essential validation techniques for ensuring data safety, reliability, and system security. Discover best practices for validation at the right places in your application, from user input fields to API endpoints.",
-    content: `
-      <h2>Introduction</h2>
-      <p>In software development, validation is essential for ensuring that data entering your system is safe, reliable, and structured correctly. Whether you're building APIs, forms, or large-scale systems, validation serves as a gatekeeper that prevents bad data from causing bugs, security issues, or system crashes.</p>
-      
-      <h2>The Importance of Validation</h2>
-      <p>Validation acts as the first line of defense against malicious input, data corruption, and system failures. It ensures that your application behaves predictably and maintains data integrity across all operations.</p>
-      
-      <h2>Key Validation Strategies</h2>
-      <ul>
-        <li>Input sanitization and validation</li>
-        <li>Server-side validation</li>
-        <li>Client-side validation for user experience</li>
-        <li>API endpoint validation</li>
-        <li>Database constraint validation</li>
-      </ul>
-      
-      <h2>Best Practices</h2>
-      <p>Always validate data at multiple layers of your application. Use Django examples and concepts that apply to all programming languages and frameworks. Focus on maintainability and overall system security.</p>
-      
-      <h2>Conclusion</h2>
-      <p>By implementing proper validation strategies, you can build secure, reliable applications that provide excellent user experiences while maintaining robust system integrity.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Learn essential validation techniques for ensuring data safety, reliability, and system security.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", // Code validation
     date: "July 2025",
     author: "Ibrahim Bello",
     category: "Software Development",
     readTime: "8 min read",
-    tags: ["Validation", "Security", "Best Practices", "Django", "Software Development"],
-    url: "https://medium.com/@belloibrahv/mastering-code-validation-best-practices-for-error-free-applications-ac88197dedb4"
+    tags: ["Validation", "Security", "Best Practices", "Django", "Software Development"]
   }
 ];
