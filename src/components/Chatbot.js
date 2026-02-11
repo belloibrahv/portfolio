@@ -181,14 +181,15 @@ const Chatbot = () => {
           done = doneReading;
           if (value) {
             const chunk = decoder.decode(value, { stream: true });
-            chunk.split("\n").forEach(line => {
+            const lines = chunk.split("\n");
+            for (const line of lines) {
               if (line.startsWith("data:")) {
                 try {
                   const json = JSON.parse(line.replace("data:", "").trim());
                   if (json.message && json.message.content) {
                     aiText += json.message.content;
                     partialText = aiText;
-                    const textToShow = partialText; // capture for async callback
+                    const textToShow = partialText;
                     setMessages(msgs => {
                       if (msgs[msgs.length - 1]?.fromUser === false && msgs[msgs.length - 1]?.text.endsWith("…")) {
                         return [...msgs.slice(0, -1), { fromUser: false, text: textToShow + "…" }];
@@ -198,7 +199,7 @@ const Chatbot = () => {
                   }
                 } catch {}
               }
-            });
+            }
           }
         }
         // Finalize message

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Bio } from '../../data/constants';
-import HeroImg from '../../images/HeroImage.jpg';
+import HeroImg from '../../images/HeroImage.png';
 
 const Container = styled.section`
   display: flex;
