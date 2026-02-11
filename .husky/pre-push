@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "Running pre-push checks..."
+CI=true yarn run build
+CI=true yarn test --watchAll=false
