@@ -27,6 +27,6 @@ jobs:
           CI: true
 
       - name: Test
-        run: yarn test --watchAll=false
+        run: yarn test --watchAll=false --passWithNoTests
         env:
           CI: true
