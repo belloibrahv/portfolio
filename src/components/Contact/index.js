@@ -3,7 +3,16 @@ import styled from 'styled-components';
 import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { FiSend, FiMapPin, FiClock, FiBriefcase, FiMail } from 'react-icons/fi';
+import {
+  FiSend,
+  FiMapPin,
+  FiClock,
+  FiBriefcase,
+  FiMail,
+  FiCheckCircle,
+  FiAlertTriangle,
+  FiLoader,
+} from 'react-icons/fi';
 import Fade from '@mui/material/Fade';
 
 const Container = styled.div`
@@ -267,6 +276,10 @@ const ContactInput = styled.input`
     padding: 12px 16px;
     font-size: 15px;
   }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `;
 
 const ContactInputMessage = styled.textarea`
@@ -289,6 +302,10 @@ const ContactInputMessage = styled.textarea`
   @media (max-width: 640px) {
     padding: 12px 16px;
     font-size: 15px;
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `;
 
@@ -315,6 +332,12 @@ const ContactButton = styled.button`
     transform: translateY(-1px);
     background-position: 100% 0%;
   }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+  }
   &:focus {
     outline: 2px solid ${({ theme }) => theme.primary};
   }
@@ -339,6 +362,50 @@ const MessageSent = styled.div`
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
+const MessageError = styled.div`
+  color: #ff6b6b;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: left;
+  background: rgba(255, 107, 107, 0.12);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 6px 18px rgba(255,107,107,0.12);
+  animation: popIn 0.5s ease-out both;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
+const NoticeContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.5;
+`;
+
+const NoticeTitle = styled.div`
+  font-weight: 700;
+  font-size: 15px;
+`;
+
+const NoticeBody = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+
+const Spinner = styled(FiLoader)`
+  animation: spin 1s linear infinite;
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 `;
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -346,28 +413,43 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const Contact = () => {
-  const [open, setOpen] = useState(false);
-  const [error, setError] = useState(false);
-  const [showMailSent, setShowMailSent] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, severity: 'success', message: '' });
+  const [status, setStatus] = useState('idle');
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.current) {
+      setStatus('error');
+      setSnackbar({
+        open: true,
+        severity: 'error',
+        message: 'The form is not ready yet. Please refresh and try again.',
+      });
+      return;
+    }
+    setStatus('sending');
     emailjs
       .sendForm('service_yss8ol2', 'template_u2rqybq', form.current, 'HP9B63gflGBAw8cfp')
-      .then(
-        (result) => {
-          setOpen(true);
-          setError(false);
-          form.current.reset();
-          setShowMailSent(true);
-          setTimeout(() => setShowMailSent(false), 4000);
-        },
-        (err) => {
-          setError(true);
-          console.log(err.text);
-        }
-      );
+      .then(() => {
+        setStatus('success');
+        form.current.reset();
+        setSnackbar({
+          open: true,
+          severity: 'success',
+          message: 'Thanks! Your message has been sent successfully.',
+        });
+        setTimeout(() => setStatus('idle'), 6000);
+      })
+      .catch((err) => {
+        setStatus('error');
+        console.log(err);
+        setSnackbar({
+          open: true,
+          severity: 'error',
+          message: 'We could not send your message right now. Please try again shortly.',
+        });
+      });
   };
 
   return (
@@ -412,45 +494,60 @@ const Contact = () => {
             </InfoGrid>
           </LeftPanel>
           <RightPanel>
-            {showMailSent && (
-              <MessageSent>
-                Message sent! I'll get back to you soon.
+            {status === 'success' && (
+              <MessageSent role="status" aria-live="polite">
+                <FiCheckCircle style={{ marginTop: 2 }} />
+                <NoticeContent>
+                  <NoticeTitle>Message received</NoticeTitle>
+                  <NoticeBody>Thanks for reaching out. I will reply within 1-2 business days.</NoticeBody>
+                </NoticeContent>
               </MessageSent>
+            )}
+            {status === 'error' && (
+              <MessageError role="status" aria-live="polite">
+                <FiAlertTriangle style={{ marginTop: 2 }} />
+                <NoticeContent>
+                  <NoticeTitle>Message not sent</NoticeTitle>
+                  <NoticeBody>Please check your connection and try again in a moment.</NoticeBody>
+                </NoticeContent>
+              </MessageError>
             )}
             <ContactForm ref={form} onSubmit={handleSubmit}>
               <ContactTitle>Send a message</ContactTitle>
-              <ContactInput placeholder="Your Email" name="from_email" type="email" required />
-              <ContactInput placeholder="Your Name" name="from_name" type="text" required />
-              <ContactInput placeholder="Subject (e.g. Project inquiry)" name="subject" type="text" required />
-              <ContactInputMessage placeholder="Tell me about your project or opportunity..." rows="4" name="message" required />
-              <ContactButton type="submit">
-                <FiMail style={{ fontSize: 20 }} /> Send Message
+              <ContactInput placeholder="Your Email" name="from_email" type="email" required disabled={status === 'sending'} />
+              <ContactInput placeholder="Your Name" name="from_name" type="text" required disabled={status === 'sending'} />
+              <ContactInput placeholder="Subject (e.g. Project inquiry)" name="subject" type="text" required disabled={status === 'sending'} />
+              <ContactInputMessage
+                placeholder="Tell me about your project or opportunity..."
+                rows="4"
+                name="message"
+                required
+                disabled={status === 'sending'}
+              />
+              <ContactButton type="submit" disabled={status === 'sending'}>
+                {status === 'sending' ? (
+                  <>
+                    <Spinner style={{ fontSize: 18 }} /> Sending...
+                  </>
+                ) : (
+                  <>
+                    <FiMail style={{ fontSize: 20 }} /> Send Message
+                  </>
+                )}
               </ContactButton>
             </ContactForm>
           </RightPanel>
         </ContactLayout>
         <Snackbar
-          open={open}
+          open={snackbar.open}
           autoHideDuration={6000}
-          onClose={() => setOpen(false)}
+          onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           disablePortal
           TransitionComponent={Fade}
         >
-          <Alert onClose={() => setOpen(false)} severity="success">
-            Email sent successfully!
-          </Alert>
-        </Snackbar>
-        <Snackbar
-          open={error}
-          autoHideDuration={6000}
-          onClose={() => setError(false)}
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          disablePortal
-          TransitionComponent={Fade}
-        >
-          <Alert onClose={() => setError(false)} severity="error">
-            Failed to send email. Please try again.
+          <Alert onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))} severity={snackbar.severity}>
+            {snackbar.message}
           </Alert>
         </Snackbar>
       </Wrapper>
