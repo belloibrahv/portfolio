@@ -4,7 +4,17 @@ import {
   Wrapper, 
   Title, 
   Desc, 
+  FeaturedSection,
+  FeaturedCard,
+  FeaturedImage,
+  FeaturedOverlay,
+  FeaturedContent,
+  FeaturedBadge,
+  FeaturedTitle,
+  FeaturedDescription,
+  FeaturedMeta,
   ArticlesContainer, 
+  ArticlesScroller,
   ArticleCard, 
   ArticleImage, 
   ArticleContent, 
@@ -54,6 +64,9 @@ const Blog = () => {
     }
   };
 
+  const featured = blogs[0];
+  const carouselBlogs = blogs.slice(1, 6);
+
   return (
     <Container id="articles">
       <Wrapper>
@@ -61,35 +74,65 @@ const Blog = () => {
         <Desc>
           Sharing insights, tutorials, and thoughts on technology, software development, and more.
         </Desc>
-        
-        <ArticlesContainer>
-          {blogs.map((blog) => (
-            <ArticleCard 
-              key={blog.id} 
-              onClick={() => handleArticleClick(blog)}
-              aria-label={`Read article: ${blog.title}`}
+
+        {featured && (
+          <FeaturedSection>
+            <FeaturedCard
+              onClick={() => handleArticleClick(featured)}
+              aria-label={`Read featured article: ${featured.title}`}
             >
-              <ArticleImage 
-                src={blog.image} 
-                alt={blog.title} 
-                loading="lazy"
-              />
-              <ArticleContent>
-                <ArticleTitle>{blog.title}</ArticleTitle>
-                <ArticleDescription>{blog.description}</ArticleDescription>
-                <ArticleMeta>
-                  <span>{formatDate(blog.date)}</span>
-                  <span>{blog.readTime}</span>
-                  <span>{blog.category}</span>
-                </ArticleMeta>
+              <FeaturedImage src={featured.image} alt={featured.title} loading="lazy" />
+              <FeaturedOverlay />
+              <FeaturedContent>
+                <FeaturedBadge>Featured</FeaturedBadge>
+                <FeaturedTitle>{featured.title}</FeaturedTitle>
+                <FeaturedDescription>{featured.description}</FeaturedDescription>
+                <FeaturedMeta>
+                  <span>{formatDate(featured.date)}</span>
+                  <span>{featured.readTime}</span>
+                  <span>{featured.category}</span>
+                </FeaturedMeta>
                 <ArticleTags>
-                  {blog.tags.map((tag, index) => (
+                  {featured.tags.slice(0, 4).map((tag, index) => (
                     <Tag key={index}>{tag}</Tag>
                   ))}
+                  {featured.tags.length > 4 && <Tag>...</Tag>}
                 </ArticleTags>
-              </ArticleContent>
-            </ArticleCard>
-          ))}
+              </FeaturedContent>
+            </FeaturedCard>
+          </FeaturedSection>
+        )}
+
+        <ArticlesContainer>
+          <ArticlesScroller>
+            {carouselBlogs.map((blog) => (
+              <ArticleCard 
+                key={blog.id} 
+                onClick={() => handleArticleClick(blog)}
+                aria-label={`Read article: ${blog.title}`}
+              >
+                <ArticleImage 
+                  src={blog.image} 
+                  alt={blog.title} 
+                  loading="lazy"
+                />
+                <ArticleContent>
+                  <ArticleTitle>{blog.title}</ArticleTitle>
+                  <ArticleDescription>{blog.description}</ArticleDescription>
+                  <ArticleMeta>
+                    <span>{formatDate(blog.date)}</span>
+                    <span>{blog.readTime}</span>
+                  </ArticleMeta>
+                  <ArticleTags>
+                    {blog.tags.slice(0, 3).map((tag, index) => (
+                      <Tag key={index}>{tag}</Tag>
+                    ))}
+                    {blog.tags.length > 3 && <Tag>...</Tag>}
+                  </ArticleTags>
+                </ArticleContent>
+              </ArticleCard>
+            ))}
+          </ArticlesScroller>
         </ArticlesContainer>
       </Wrapper>
     </Container>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as LinkScroll } from "react-scroll";
 import HeroBgAnimation from "../HeroBgAnimation";
 import {
   HeroContainer,
@@ -10,13 +11,35 @@ import {
   TextLoop,
   Title,
   Span,
-  SubTitle,
+  Eyebrow,
+  Lead,
+  Summary,
+  ButtonGroup,
   ResumeButton,
+  ScrollIndicator,
+  ToolStack,
+  ToolStackTitle,
+  ToolPills,
+  ToolPill,
+  ToolIcon,
 } from "./HeroStyle";
 import HeroImg from "../../images/HeroImage.png";
 import Typewriter from "typewriter-effect";
-import { Bio } from "../../data/constants";
+import { Bio, skills } from "../../data/constants";
 import GitHubActivity from "../GithubActivity";
+
+const allTools = skills.flatMap((category) => category.skills);
+const featuredToolNames = [
+  "React Js",
+  "Next Js",
+  "Node Js",
+  "Express Js",
+  "Postgresql",
+  "Docker",
+];
+const featuredTools = featuredToolNames
+  .map((name) => allTools.find((tool) => tool.name === name))
+  .filter(Boolean);
 
 const HeroSection = () => {
   return (
@@ -27,38 +50,41 @@ const HeroSection = () => {
         </HeroBg>
         <HeroInnerContainer>
           <HeroLeftContainer id="Left">
-            <Title>
-              👋🏽 Hi, I'm {Bio.name}
-              <br />
-              <span style={{ fontWeight: 400, fontSize: '20px', color: '#888' }}>
-                Building fast, scalable web apps for both local and global businesses.
-              </span>
-            </Title>
-            <SubTitle style={{ marginTop: 12, marginBottom: 18, fontSize: 13, fontStyle: 'italic', color: '#666' }}>
-              My passion is bringing order to the digital world. I craft software that grows with its users, handling both what you see and what powers it from behind. I'm all about making complex things simple and beautiful through smart design and clever automation.
-            </SubTitle>
+            <Eyebrow>Software Engineer</Eyebrow>
+            <Title>{Bio.name}</Title>
+            <Lead>
+              I build reliable, scalable web products and platforms for modern teams
+              and growing businesses.
+            </Lead>
             <TextLoop>
-              <span style={{ color: '#888', fontWeight: 400 }}>I am a</span>
+              <span style={{ color: '#888', fontWeight: 500 }}>I work as a</span>
               <Span>
                 <Typewriter
                   options={{
-                    strings: [
-                      "Frontend Engineer",
-                      "React Specialist",
-                      "Django Specialist",
-                      "Software Engineer",
-                      "Open Source Advocate"
-                    ],
+                    strings: Bio.roles,
                     autoStart: true,
                     loop: true,
                   }}
                 />
               </Span>
             </TextLoop>
-            <SubTitle style={{ marginTop: 18, marginBottom: 32, fontSize: 18, color: '#444' }}>
-              I help founders and teams launch products quickly, with clean code and a focus on real business results. Let's build something impactful together.
-            </SubTitle>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: 32 }}>
+            <Summary>
+              From UI architecture to APIs and cloud deployment, I focus on performance,
+              maintainability, and clean user experiences. I partner with teams to ship
+              production-ready software that supports real business outcomes.
+            </Summary>
+            <ToolStack>
+              <ToolStackTitle>Core Tools</ToolStackTitle>
+              <ToolPills>
+                {featuredTools.map((tool) => (
+                  <ToolPill key={tool.name}>
+                    <ToolIcon src={tool.image} alt={tool.name} loading="lazy" />
+                    {tool.name}
+                  </ToolPill>
+                ))}
+              </ToolPills>
+            </ToolStack>
+            <ButtonGroup>
               <ResumeButton href={Bio.resume} target="_blank" rel="noopener noreferrer">
                 View Resume
               </ResumeButton>
@@ -72,14 +98,19 @@ const HeroSection = () => {
               >
                 Let's Work Together
               </ResumeButton>
-            </div>
+            </ButtonGroup>
             <GitHubActivity />
           </HeroLeftContainer>
 
           <HeroRightContainer id="Right">
-            <Img src={HeroImg} alt="hero-image" />
+            <Img src={HeroImg} alt={`${Bio.name} - Software Engineer`} />
           </HeroRightContainer>
         </HeroInnerContainer>
+        <LinkScroll to="skills" smooth offset={-80} duration={600} aria-label="Scroll to skills">
+          <ScrollIndicator>
+            <span />
+          </ScrollIndicator>
+        </LinkScroll>
       </HeroContainer>
     </div>
   );

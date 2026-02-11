@@ -4,11 +4,12 @@ import styled from 'styled-components'
 const Card = styled.div`
   width: 100%;
   max-width: 350px;
-  min-height: 520px;
+  height: 560px;
   background-color: ${({ theme }) => theme.card};
   cursor: pointer;
   border-radius: 14px;
-  box-shadow: 0 0 16px 4px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  border: 1px solid ${({ theme }) => theme.text_secondary + "22"};
   overflow: hidden;
   padding: 28px 20px 20px 20px;
   display: flex;
@@ -18,14 +19,13 @@ const Card = styled.div`
   margin: 0 auto;
   
   &:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 50px 8px rgba(0,0,0,0.18);
-    filter: brightness(1.08);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.16);
   }
   
   @media (max-width: 768px) {
     max-width: 100%;
-    min-height: 480px;
+    height: 520px;
     padding: 24px 16px 16px 16px;
   }
 `;
@@ -34,9 +34,9 @@ const Image = styled.img`
   width: 100%;
   height: 180px;
   object-fit: cover;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: 0 0 16px 2px rgba(0,0,0,0.08);
+  background-color: ${({ theme }) => theme.card};
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 `;
 
 const Tags = styled.div`
@@ -46,15 +46,17 @@ const Tags = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 4px;
+  max-height: 64px;
+  overflow: hidden;
 `;
 
 const Tag = styled.span`
-  font-size: 13px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.primary};
-  background-color: ${({ theme }) => theme.primary + 15};
-  padding: 3px 10px;
-  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text_primary};
+  background-color: ${({ theme }) => theme.text_secondary + "20"};
+  padding: 4px 10px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -66,11 +68,12 @@ const Details = styled.div`
   flex-direction: column;
   gap: 2px;
   padding: 0px 2px;
+  min-height: 140px;
 `;
 const Title = styled.div`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  color: ${({ theme }) => theme.text_secondary};
+  color: ${({ theme }) => theme.text_primary};
   overflow: hidden;
   display: -webkit-box;
   max-width: 100%;
@@ -86,13 +89,14 @@ const Date = styled.div`
 `;
 const Description = styled.div`
   font-weight: 400;
-  color: ${({ theme }) => theme.text_secondary + 99};
+  color: ${({ theme }) => theme.text_secondary};
   margin-top: 8px;
   font-size: 15px;
   display: -webkit-box;
   max-width: 100%;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  overflow: hidden;
   text-overflow: ellipsis;
 `;
 const Section = styled.div`
@@ -100,23 +104,50 @@ const Section = styled.div`
   font-size: 14px;
   color: ${({ theme }) => theme.text_secondary};
   line-height: 1.5;
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  overflow: hidden;
+`;
+const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
 `;
 const Actions = styled.div`
   display: flex;
-  gap: 12px;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 const ActionButton = styled.a`
+  min-height: 38px;
   padding: 8px 16px;
   background: ${({ theme }) => theme.primary};
   color: #fff;
-  border-radius: 8px;
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s;
   &:hover {
     background: ${({ theme }) => theme.primary + 'cc'};
+  }
+  @media (max-width: 480px) {
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: 13px;
   }
 `;
 const Members = styled.div`
@@ -135,37 +166,47 @@ const Avatar = styled.img`
 `;
 
 const ProjectCards = ({project, setOpenModal}) => {
+  const tags = project.tags || [];
+  const maxTags = 8;
+  const visibleTags = tags.slice(0, maxTags);
+  const hasMoreTags = tags.length > maxTags;
+
   return (
     <Card onClick={() => setOpenModal && setOpenModal({state: true, project: project})}>
       {project.image && <Image src={project.image} alt={project.title} />}
-      <Tags>
-        {project.tags?.map((tag, index) => (
-          <Tag key={index}>{tag}</Tag>
-        ))}
-      </Tags>
-      <Details>
-        <Title>{project.title}</Title>
-        <Date>{project.date}</Date>
-        <Description>{project.description}</Description>
-      </Details>
-      {project.problem && (
-        <Section><b>Problem:</b> {project.problem}</Section>
-      )}
-      {project.outcome && (
-        <Section><b>Outcome:</b> {project.outcome}</Section>
-      )}
-      <Actions>
-        {project.webapp && <ActionButton href={project.webapp} target="_blank" rel="noopener noreferrer">Live Demo</ActionButton>}
-        {project.github && <ActionButton href={project.github} target="_blank" rel="noopener noreferrer">GitHub</ActionButton>}
-        {project.media && <ActionButton href={project.media} target="_blank" rel="noopener noreferrer">Media</ActionButton>}
-      </Actions>
-      {project.member && project.member.length > 0 && (
-        <Members>
-          {project.member.map((member, idx) => (
-            <Avatar key={idx} src={member.img} title={member.name} />
+      <Content>
+        <Tags>
+          {visibleTags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
           ))}
-        </Members>
-      )}
+          {hasMoreTags && <Tag>...</Tag>}
+        </Tags>
+        <Details>
+          <Title>{project.title}</Title>
+          <Date>{project.date}</Date>
+          <Description>{project.description}</Description>
+        </Details>
+        {project.problem && (
+          <Section><b>Problem:</b> {project.problem}</Section>
+        )}
+        {project.outcome && (
+          <Section><b>Outcome:</b> {project.outcome}</Section>
+        )}
+      </Content>
+      <Footer>
+        <Actions>
+          {project.webapp && <ActionButton href={project.webapp} target="_blank" rel="noopener noreferrer">Live Demo</ActionButton>}
+          {project.github && <ActionButton href={project.github} target="_blank" rel="noopener noreferrer">GitHub</ActionButton>}
+          {project.media && <ActionButton href={project.media} target="_blank" rel="noopener noreferrer">Media</ActionButton>}
+        </Actions>
+        {project.member && project.member.length > 0 && (
+          <Members>
+            {project.member.map((member, idx) => (
+              <Avatar key={idx} src={member.img} title={member.name} />
+            ))}
+          </Members>
+        )}
+      </Footer>
     </Card>
   )
 }

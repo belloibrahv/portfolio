@@ -1,21 +1,25 @@
 import { Link as LinkR } from 'react-router-dom';
 import styled from 'styled-components';
-// import _default from '../../themes/default';
 
-export const Nav = styled.div`
-    background-color: ${({theme}) => theme.card_light};
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    transition: all 0.4s ease-in-out;
-    @media (max-width: 960px) {
-        transition: 0.8s all ease;
-    }
+export const Nav = styled.nav`
+  background: ${({ theme, scrolled }) =>
+    scrolled ? `${theme.card_light}ee` : theme.card_light};
+  backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(12px)' : 'none')};
+  -webkit-backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(12px)' : 'none')};
+  box-shadow: ${({ scrolled }) =>
+    scrolled ? '0 4px 24px rgba(0,0,0,0.12)' : 'none'};
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  @media (max-width: 960px) {
+    transition: 0.3s all ease;
+  }
 `;
 
 export const NavbarContainer = styled.div`
@@ -30,38 +34,31 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavLogo = styled(LinkR)`
-  width: 80%;    
+  width: auto;
   padding: 0 6px;
   display: flex;
   justify-content: start;
   align-items: center;
   text-decoration: none;
+  color: ${({ theme }) => theme.text_primary};
   @media (max-width: 640px) {
-      padding: 0 0px;
+    padding: 0;
   }
 `;
 
 export const Span = styled.div`
   padding: 0 4px;
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   opacity: 0;
-  animation: fadeIn 1.5s ease forwards, scaleUp 1.5s ease forwards;
+  animation: fadeIn 0.8s ease 0.2s forwards;
   @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes scaleUp {
-    0% {
-      transform: scale(0.8);
-    }
-    100% {
-      transform: scale(1);
-    }
+    to { opacity: 1; }
   }
 `;
 
@@ -69,24 +66,38 @@ export const NavItems = styled.ul`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content:center;
-  gap: 32px;
+  justify-content: center;
+  gap: 28px;
   padding: 0 6px;
   list-style: none;
-  @media screen and (max-width: 768px) {
-      display: none;
+  @media screen and (max-width: 960px) {
+    display: none;
   }
 `;
 
-export const NavLink = styled.a`
-  color: ${({ theme }) => theme.text_primary};
+export const NavLink = styled.span`
+  color: ${({ theme, active }) => (active ? theme.primary : theme.text_primary)};
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition: color 0.25s ease, transform 0.25s ease;
   text-decoration: none;
-  :hover {
+  font-size: 0.95rem;
+  position: relative;
+  &:hover {
     color: ${({ theme }) => theme.primary};
-    transform: translateY(-5px);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: ${({ active }) => (active ? '100%' : '0')};
+    height: 2px;
+    background: linear-gradient(90deg, #00C9A7, #845EC2);
+    transition: width 0.3s ease;
+  }
+  &:hover::after {
+    width: 100%;
   }
 `;
 
@@ -95,71 +106,102 @@ export const GitHubButton = styled.a`
   justify-content: center;
   display: flex;
   align-items: center;
-  height: 70%;
-  border-radius: 20px;
+  min-height: 42px;
+  padding: 0 20px;
+  border-radius: 12px;
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
-  padding: 0 20px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 16px;
-  transition: all 0.6s ease-in-out;
-  :hover {
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  &:hover {
     background: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.white};
-    transform: scale(1.05);
+    transform: translateY(-2px);
   }
-  @media screen and (max-width: 768px) { 
-    font-size: 14px;
+  @media screen and (max-width: 768px) {
+    font-size: 0.85rem;
+    min-height: 44px;
+    padding: 0 16px;
   }
 `;
 
 export const ButtonContainer = styled.div`
-  width: 80%;  
-  height: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
+  gap: 8px;
   padding: 0 6px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     display: none;
   }
 `;
 
-
-export const MobileIcon = styled.div`
+export const MobileIcon = styled.button`
   display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: ${({ theme }) => theme.text_primary};
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 1.5rem;
+  @media screen and (max-width: 960px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-`
+`;
 
 export const MobileMenu = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-    position: absolute;
-    top: 80px;
-    right: 0;
-    width: 100%;
-    padding: 12px 40px 24px 40px;
-    background: ${({ theme }) => theme.card_light+99};
-    transition: all 0.6s ease-in-out;
-    transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
-    z-index: ${({ isOpen }) => (isOpen ? '1000' : '-1000')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  padding: 24px 40px 32px;
+  background: ${({ theme }) => `${theme.card_light}fa`};
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  border-radius: 0 0 20px 20px;
+  animation: slideDown 0.3s ease;
+  z-index: 999;
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
 
-`
+export const MobileLink = styled.span`
+  color: ${({ theme, active }) => (active ? theme.primary : theme.text_primary)};
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  padding: 0 8px;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
+`;
 
 export const MobileMenuItems = styled.ul`
   display: flex;
@@ -169,8 +211,7 @@ export const MobileMenuItems = styled.ul`
   gap: 32px;
   list-style: none;
   width: 100%;
-  height: 100%;
-`
+`;
 
 export const MobileMenuLink = styled(LinkR)`
   color: ${({ theme }) => theme.text_primary};
@@ -178,10 +219,9 @@ export const MobileMenuLink = styled(LinkR)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  :hover {
+  &:hover {
     color: ${({ theme }) => theme.primary};
   }
-
   &.active {
     border-bottom: 2px solid ${({ theme }) => theme.primary};
   }
@@ -201,25 +241,9 @@ export const MobileMenuButton = styled.a`
   text-decoration: none;
   font-size: 16px;
   transition: all 0.6s ease-in-out;
-
-  :hover {
+  &:hover {
     background: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.white};
-  }
-`;
-
-export  const MobileLink = styled.a`
-  color: ${({ theme }) => theme.text_primary};
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  :hover {
-    color: ${({ theme }) => theme.primary};
-  }
-
-  &.active {
-    border-bottom: 2px solid ${({ theme }) => theme.primary};
   }
 `;
 
@@ -231,6 +255,6 @@ export const MobileNavLogo = styled(LinkR)`
   align-items: center;
   text-decoration: none;
   @media (max-width: 640px) {
-    padding: 0 0px;
+    padding: 0;
   }
 `;

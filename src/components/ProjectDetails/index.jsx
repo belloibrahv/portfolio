@@ -149,25 +149,34 @@ const MemberName = styled.div`
 
 const ButtonGroup = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     margin: 12px 0px;
     gap: 12px;
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
 `;
 
 const Button = styled.a`
-    width: 100%;
+    flex: 1;
+    min-width: 120px;
+    min-height: 44px;
     text-align: center;
     font-size: 16px;
     font-weight: 600;
     color: ${({ theme }) => theme.text_primary};
-    padding: 12px 16px;
+    padding: 12px 20px;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.primary};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     ${({ dull, theme }) => dull && `
         background-color: ${theme.bgLight};
         color: ${theme.text_secondary};
         &:hover {
-            background-color: ${({ theme }) => theme.bg + 99};
+            background-color: ${theme.bg + 99};
         }
     `}
     cursor: pointer;
@@ -176,8 +185,13 @@ const Button = styled.a`
     &:hover {
         background-color: ${({ theme }) => theme.primary + 99};
     }
-    @media only screen and (max-width: 600px) {
-        font-size: 12px;
+    @media (max-width: 600px) {
+        font-size: 14px;
+        min-height: 40px;
+        padding: 10px 16px;
+    }
+    @media (max-width: 480px) {
+        width: 100%;
     }
 `;
 

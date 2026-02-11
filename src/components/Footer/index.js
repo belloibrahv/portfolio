@@ -20,11 +20,21 @@ const Socials = styled.div`
 `;
 
 const SocialIcon = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   color: ${({ theme }) => theme.primary};
   font-size: 28px;
   transition: color 0.2s;
   &:hover {
     color: ${({ theme }) => theme.text_primary};
+  }
+  @media (max-width: 480px) {
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 24px;
   }
 `;
 
@@ -37,12 +47,19 @@ const Links = styled.div`
 `;
 
 const Link = styled.a`
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
   color: ${({ theme }) => theme.text_secondary};
   font-size: 16px;
   text-decoration: none;
   transition: color 0.2s;
   &:hover {
     color: ${({ theme }) => theme.primary};
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 `;
 

@@ -4,25 +4,36 @@ import { FiMessageCircle, FiX } from "react-icons/fi";
 
 const FloatingButton = styled.button`
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 24px;
+  right: 24px;
   z-index: 1000;
   background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  min-width: 56px;
+  min-height: 56px;
+  width: 56px;
+  height: 56px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.75rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
   &:hover {
     filter: brightness(1.1);
     transform: scale(1.08);
+  }
+  @media (max-width: 480px) {
+    bottom: 20px;
+    right: 20px;
+    min-width: 52px;
+    min-height: 52px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
   }
 `;
 
@@ -84,12 +95,20 @@ const SendButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 8px 16px;
+  min-height: 44px;
+  padding: 8px 18px;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   transition: filter 0.2s;
+  white-space: nowrap;
   &:hover {
     filter: brightness(1.1);
+  }
+  @media (max-width: 480px) {
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
   }
 `;
 

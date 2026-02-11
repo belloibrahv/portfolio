@@ -2,7 +2,8 @@ import styled from 'styled-components';
 // import _default from '../../themes/default';
 
 export const Container = styled.div`
-    background: linear-gradient(343.07deg, rgba(132, 59, 206, 0.06) 5.71%, rgba(132, 59, 206, 0) 64.83%);
+    background: radial-gradient(circle at 10% 20%, rgba(0, 201, 167, 0.06), transparent 35%),
+      radial-gradient(circle at 90% 10%, rgba(132, 94, 194, 0.08), transparent 35%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,9 +20,9 @@ export const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
-    max-width: 1350px;
-    padding: 10px 0px 100px 0;
-    gap: 12px;
+    max-width: 1200px;
+    padding: 40px 20px 110px;
+    gap: 16px;
     @media (max-width: 960px) {
         flex-direction: column;
     }
@@ -30,11 +31,12 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
 font-size: 42px;
 text-align: center;
-font-weight: 600;
-margin-top: 20px;
+font-weight: 700;
+letter-spacing: 0.2px;
+margin-top: 10px;
   color: ${({ theme }) => theme.text_primary};
   @media (max-width: 768px) {
-      margin-top: 12px;
+      margin-top: 8px;
       font-size: 32px;
   }
 `;
@@ -44,6 +46,7 @@ export const Desc = styled.div`
     text-align: center;
     max-width: 600px;
     color: ${({ theme }) => theme.text_secondary};
+    line-height: 1.7;
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
@@ -52,37 +55,54 @@ export const Desc = styled.div`
 
 export const ToggleButtonGroup = styled.div`
     display: flex;
-    border: 1.5px solid ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.primary};
-    font-size: 16px;
-    border-radius: 12px;
-    font-weight: 500;
-    margin: 22px 0px;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid ${({ theme }) => theme.text_secondary + "33"};
+    color: ${({ theme }) => theme.text_primary};
+    font-size: 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    margin: 22px 0 10px;
+    padding: 6px;
+    background: ${({ theme }) => theme.card};
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
     @media (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media (max-width: 480px) {
         font-size: 12px;
     }
 `
 
 export const ToggleButton = styled.div`
-    padding: 8px 18px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
     cursor: pointer;
+    white-space: nowrap;
     ${({ active, theme }) =>
         active && `
-    background: ${theme.primary + 20};
+    background: ${theme.primary};
+    color: ${theme.white};
     `
     }
     &:hover {
-        background: ${({ theme }) => theme.primary + 8};
+        background: ${({ theme }) => theme.primary + "22"};
     }
     @media (max-width: 768px) {
-        padding: 6px 8px;
-        border-radius: 4px;
+        padding: 8px 12px;
+        min-height: 34px;
+    }
+    @media (max-width: 480px) {
+        padding: 8px 10px;
+        font-size: 11px;
     }
 `
 export const Divider = styled.div`
-    width: 1.5px;
-    background: ${({ theme }) => theme.primary};
+    display: none;
 `
 
 
@@ -90,15 +110,15 @@ export const CarouselContainer = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
     
     /* Slick carousel customization */
     .slick-dots {
         bottom: -50px;
         
         li button:before {
-            color: ${({ theme }) => theme.primary};
-            font-size: 14px;
+            color: ${({ theme }) => theme.text_secondary};
+            font-size: 10px;
         }
         
         li.slick-active button:before {
@@ -108,21 +128,21 @@ export const CarouselContainer = styled.div`
     
     .slick-prev, .slick-next {
         z-index: 2;
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         
         &:before {
-            font-size: 24px;
+            font-size: 22px;
             color: ${({ theme }) => theme.primary};
         }
     }
     
     .slick-prev {
-        left: -50px;
+        left: -36px;
     }
     
     .slick-next {
-        right: -50px;
+        right: -36px;
     }
     
     .slick-slide {
@@ -139,11 +159,11 @@ export const CarouselContainer = styled.div`
     /* Mobile responsiveness */
     @media (max-width: 1200px) {
         .slick-prev {
-            left: -25px;
+            left: -12px;
         }
         
         .slick-next {
-            right: -25px;
+            right: -12px;
         }
     }
     

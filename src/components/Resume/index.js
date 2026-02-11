@@ -21,12 +21,15 @@ const Title = styled.h2`
 `;
 
 const DownloadButton = styled.a`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
+  min-height: 48px;
   padding: 14px 32px;
   color: ${({ theme }) => theme.white};
   border-radius: 12px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
@@ -35,6 +38,13 @@ const DownloadButton = styled.a`
   &:hover {
     filter: brightness(1.08);
     transform: translateY(-2px) scale(1.03);
+  }
+  @media (max-width: 480px) {
+    min-height: 44px;
+    padding: 12px 24px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
   }
 `;
 

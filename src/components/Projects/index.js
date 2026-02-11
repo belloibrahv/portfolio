@@ -23,12 +23,17 @@ const Projects = React.memo(({openModal,setOpenModal}) => {
     setToggle(newToggle);
   }, []);
 
+  const totalSlides = filteredProjects.length;
+  const baseSlides = Math.min(3, totalSlides || 1);
+  const tabletSlides = Math.min(2, totalSlides || 1);
+  const mobileSlides = 1;
+
   // Memoize carousel settings
   const carouselSettings = useMemo(() => ({
     dots: true,
-    infinite: true,
+    infinite: totalSlides > baseSlides,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: baseSlides,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -37,28 +42,30 @@ const Projects = React.memo(({openModal,setOpenModal}) => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: tabletSlides,
           slidesToScroll: 1,
+          infinite: totalSlides > tabletSlides,
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: mobileSlides,
           slidesToScroll: 1,
           dots: true,
-          arrows: false
+          arrows: false,
+          infinite: totalSlides > mobileSlides,
         }
       }
     ]
-  }), []);
+  }), [totalSlides, baseSlides, tabletSlides, mobileSlides]);
 
   return (
     <Container id="projects">
       <Wrapper>
         <Title>Projects</Title>
         <Desc>
-          I have worked on a wide range of projects. From web apps to android apps. Here are some of my projects.
+          Selected work across web platforms, dashboards, and data products built for performance and clarity.
         </Desc>
         <ToggleButtonGroup >
           {toggle === 'all' ?
@@ -68,21 +75,27 @@ const Projects = React.memo(({openModal,setOpenModal}) => {
           }
           <Divider />
           {toggle === 'web app' ?
-            <ToggleButton active value="web app" onClick={() => handleToggle('web app')}>WEB APP'S</ToggleButton>
+            <ToggleButton active value="web app" onClick={() => handleToggle('web app')}>Web Apps</ToggleButton>
             :
-            <ToggleButton value="web app" onClick={() => handleToggle('web app')}>WEB APP'S</ToggleButton>
+            <ToggleButton value="web app" onClick={() => handleToggle('web app')}>Web Apps</ToggleButton>
           }
           <Divider />
           {toggle === 'android app' ?
-            <ToggleButton active value="android app" onClick={() => handleToggle('android app')}>ANDROID APP'S</ToggleButton>
+            <ToggleButton active value="android app" onClick={() => handleToggle('android app')}>Android Apps</ToggleButton>
             :
-            <ToggleButton value="android app" onClick={() => handleToggle('android app')}>ANDROID APP'S</ToggleButton>
+            <ToggleButton value="android app" onClick={() => handleToggle('android app')}>Android Apps</ToggleButton>
           }
           <Divider />
           {toggle === 'machine learning' ?
-            <ToggleButton active value="machine learning" onClick={() => handleToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
+            <ToggleButton active value="machine learning" onClick={() => handleToggle('machine learning')}>Machine Learning</ToggleButton>
             :
-            <ToggleButton value="machine learning" onClick={() => handleToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
+            <ToggleButton value="machine learning" onClick={() => handleToggle('machine learning')}>Machine Learning</ToggleButton>
+          }
+          <Divider />
+          {toggle === 'open source' ?
+            <ToggleButton active value="open source" onClick={() => handleToggle('open source')}>Open Source</ToggleButton>
+            :
+            <ToggleButton value="open source" onClick={() => handleToggle('open source')}>Open Source</ToggleButton>
           }
         </ToggleButtonGroup>
         <CarouselContainer>
