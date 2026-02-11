@@ -40,7 +40,7 @@ const LoadingSpinner = () => (
 );
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   const [openBlogModal, setOpenBlogModal] = useState({ state: false, blog: null });
   

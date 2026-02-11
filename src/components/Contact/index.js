@@ -170,9 +170,6 @@ const Contact = () => {
       );
   };
 
-  // Defensive container for Snackbar to avoid null errors
-  const getSnackbarContainer = () => (typeof window !== 'undefined' && document.body ? document.body : undefined);
-
   return (
     <Container id="contact">
       <Wrapper>

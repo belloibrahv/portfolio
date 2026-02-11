@@ -187,13 +187,13 @@ const Chatbot = () => {
                   const json = JSON.parse(line.replace("data:", "").trim());
                   if (json.message && json.message.content) {
                     aiText += json.message.content;
-                    partialText = aiText; // capture current value
+                    partialText = aiText;
+                    const textToShow = partialText; // capture for async callback
                     setMessages(msgs => {
-                      // Remove last AI message if it's a partial
                       if (msgs[msgs.length - 1]?.fromUser === false && msgs[msgs.length - 1]?.text.endsWith("…")) {
-                        return [...msgs.slice(0, -1), { fromUser: false, text: partialText + "…" }];
+                        return [...msgs.slice(0, -1), { fromUser: false, text: textToShow + "…" }];
                       }
-                      return [...msgs, { fromUser: false, text: partialText + "…" }];
+                      return [...msgs, { fromUser: false, text: textToShow + "…" }];
                     });
                   }
                 } catch {}
