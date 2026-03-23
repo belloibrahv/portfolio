@@ -91,9 +91,9 @@ export const HeroRightContainer = styled.div`
   display: flex;
   order: 2;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 0;
-  margin-top: 0;
+  margin-top: -40px;
   animation: heroFadeInRight 0.9s ease-out 0.4s both;
   @keyframes heroFadeInRight {
     from {
@@ -110,10 +110,12 @@ export const HeroRightContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 80px;
+    margin-top: 0;
   }
 
   @media (max-width: 640px) {
     margin-bottom: 30px;
+    margin-top: 0;
   }
 `;
 
@@ -121,30 +123,38 @@ export const Img = styled.img`
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 340px;
-  max-height: 340px;
+  max-width: 360px;
+  max-height: 360px;
   border-radius: 50%;
-  border: 3px solid ${({ theme }) => theme.primary};
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(132,94,194,0.08);
+  border: 4px solid ${({ theme }) => theme.primary};
+  box-shadow: 
+    0 12px 40px rgba(0,0,0,0.15), 
+    0 4px 16px rgba(132,94,194,0.12),
+    0 0 0 8px rgba(132,94,194,0.05);
   object-fit: cover;
-  object-position: 50% 15%;
+  object-position: 50% 20%;
   background: #fff;
 
   @media (max-width: 768px) {
-    max-width: 280px;
-    max-height: 280px;
+    max-width: 300px;
+    max-height: 300px;
+    border: 3px solid ${({ theme }) => theme.primary};
   }
 
   @media (max-width: 640px) {
-    max-width: 180px;
-    max-height: 180px;
+    max-width: 200px;
+    max-height: 200px;
+    border: 3px solid ${({ theme }) => theme.primary};
   }
 
-  // Add hover effect
-  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  // Add professional hover effect
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
-    transform: scale(1.05); // Slight scale-up on hover
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25); // Stronger shadow on hover
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(0,0,0,0.2), 
+      0 8px 24px rgba(132,94,194,0.15),
+      0 0 0 12px rgba(132,94,194,0.08);
   }
 `;
 
