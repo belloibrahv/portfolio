@@ -587,7 +587,7 @@ function getSmartResponse(question) {
   const questionLower = question.toLowerCase().trim();
   
   // Check each category for pattern matches
-  for (const [category, data] of Object.entries(FAQ_RESPONSES)) {
+  for (const [, data] of Object.entries(FAQ_RESPONSES)) {
     const matchedPattern = data.patterns.find(pattern => 
       questionLower.includes(pattern) || 
       questionLower.startsWith(pattern) ||
