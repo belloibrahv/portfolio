@@ -85,17 +85,19 @@ function Footer() {
         </SocialIcon>
       </Socials>
       <Links>
+        <Link href="#home">Home</Link>
         <Link href="#about">About</Link>
-        <Link href="#projects">Projects</Link>
-        <Link href="#skills">Skills</Link>
+        <Link href="#skills">Capabilities</Link>
         <Link href="#experience">Experience</Link>
+        <Link href="#projects">Projects</Link>
+        <Link href="#blog">Insights</Link>
         <Link href="#education">Education</Link>
         <Link href="#contact">Contact</Link>
         <Link href={Bio.resume} target="_blank" rel="noopener noreferrer">Resume</Link>
       </Links>
       <Signature>
-        © {new Date().getFullYear()} Ibrahim Bello — Built with passion for global impact.<br />
-        Designed & coded by Ibrahim Bello.
+        © {new Date().getFullYear()} {Bio.preferredName || Bio.name} — Built for thoughtful product delivery.<br />
+        Designed & coded by {Bio.preferredName || Bio.name}.
       </Signature>
     </FooterContainer>
   );

@@ -1,194 +1,208 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { skills } from "../../data/constants";
 
-const categoryOrder = ["Frontend", "Backend", "AI", "Cloud", "Others"];
-const orderedSkills = categoryOrder
-  .map((title) => skills.find((cat) => cat.title === title))
-  .filter(Boolean)
-  .flatMap((cat) => cat.skills.map((s) => ({ ...s, category: cat.title })));
-const allSkills =
-  orderedSkills.length > 0
-    ? orderedSkills
-    : skills.flatMap((cat) =>
-        cat.skills.map((s) => ({ ...s, category: cat.title }))
-      );
-
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   position: relative;
   z-index: 1;
-  align-items: center;
-  padding: 60px 0 80px;
-  overflow: hidden;
+  padding: 52px 24px 88px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(45, 212, 191, 0.08), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(56, 189, 248, 0.08), transparent 28%);
+
   @media (max-width: 768px) {
-    padding: 40px 0 60px;
+    padding: 40px 16px 68px;
   }
 `;
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1180px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 32px;
+  gap: 20px;
 `;
 
-const Title = styled.div`
+const Eyebrow = styled.div`
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.primary};
+`;
+
+const Title = styled.h2`
   font-size: 42px;
-  text-align: center;
+  line-height: 1.08;
   font-weight: 700;
   color: ${({ theme }) => theme.text_primary};
+
   @media (max-width: 768px) {
     font-size: 32px;
   }
 `;
 
-const Desc = styled.div`
+const Desc = styled.p`
+  max-width: 760px;
   font-size: 18px;
-  text-align: center;
-  max-width: 600px;
+  line-height: 1.8;
   color: ${({ theme }) => theme.text_secondary};
+
   @media (max-width: 768px) {
     font-size: 16px;
   }
 `;
 
-const SliderWrapper = styled.div`
-  position: relative;
-  width: 100%;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Card = styled(motion.article)`
+  background: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme }) => theme.text_secondary + "1f"};
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 18px 42px rgba(2, 8, 23, 0.16);
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  gap: 16px;
 `;
 
-const SliderRow = styled.div`
-  width: 100%;
-  overflow: hidden;
-`;
-
-const SliderTrack = styled.div`
+const CardTop = styled.div`
   display: flex;
-  width: max-content;
-  animation: scroll 36s linear infinite;
-  animation-direction: ${({ reverse }) => (reverse ? "reverse" : "normal")};
-  gap: 20px;
-  padding: 18px 0;
-  will-change: transform;
-
-  &:hover {
-    animation-play-state: paused;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-    transform: translateX(0);
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 `;
 
-const SkillItem = styled.div`
+const Category = styled.h3`
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+`;
+
+const Summary = styled.p`
+  font-size: 14px;
+  line-height: 1.75;
+  color: ${({ theme }) => theme.text_secondary};
+  margin-top: 8px;
+`;
+
+const Count = styled.span`
   flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(45, 212, 191, 0.08);
+  color: ${({ theme }) => theme.text_primary};
+  border: 1px solid rgba(45, 212, 191, 0.14);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+`;
+
+const BadgeWrap = styled.div`
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-  padding: 12px 18px;
-  background: ${({ theme }) => theme.card};
-  border: 1px solid rgba(132, 94, 194, 0.14);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+`;
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  }
+const Badge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.text_secondary + "20"};
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 13px;
+  font-weight: 700;
+`;
 
-  @media (max-width: 768px) {
-    padding: 10px 16px;
-  }
+const BadgeIcon = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.2), rgba(56, 189, 248, 0.2));
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 10px;
+  font-weight: 800;
 `;
 
 const SkillImage = styled.img`
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  @media (max-width: 768px) {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const SkillName = styled.span`
-  font-size: 16px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_primary};
-  white-space: nowrap;
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Skills = () => {
-  const topRow = allSkills.filter((_, index) => index % 2 === 0);
-  const bottomRow = allSkills.filter((_, index) => index % 2 !== 0);
-  const duplicatedTopRow = [...topRow, ...topRow];
-  const duplicatedBottomRow = [...bottomRow, ...bottomRow];
-
   return (
     <Container id="skills">
       <Wrapper>
-        <Title>Technologies & Tools</Title>
+        <Eyebrow>Capabilities</Eyebrow>
+        <Title>Designed to show the full stack without losing the story.</Title>
         <Desc>
-          A web-first, JavaScript-focused toolkit with the cloud services I ship with.
+          These are the areas where I spend most of my time: building interfaces that feel
+          sharp, APIs that stay reliable, and delivery workflows that help teams move with
+          confidence.
         </Desc>
-        <SliderWrapper>
-          <SliderRow>
-            <SliderTrack>
-              {duplicatedTopRow.map((item, idx) => (
-                <SkillItem key={`${item.name}-${idx}`}>
-                  <SkillImage src={item.image} alt={item.name} loading="lazy" />
-                  <SkillName>{item.name}</SkillName>
-                </SkillItem>
-              ))}
-            </SliderTrack>
-          </SliderRow>
-          <SliderRow>
-            <SliderTrack reverse>
-              {duplicatedBottomRow.map((item, idx) => (
-                <SkillItem key={`${item.name}-${idx}`}>
-                  <SkillImage src={item.image} alt={item.name} loading="lazy" />
-                  <SkillName>{item.name}</SkillName>
-                </SkillItem>
-              ))}
-            </SliderTrack>
-          </SliderRow>
-        </SliderWrapper>
+
+        <Grid>
+          {skills.map((group, index) => (
+            <Card
+              key={group.title}
+              as={motion.article}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.03 }}
+              whileHover={{ y: -4 }}
+            >
+              <CardTop>
+                <div>
+                  <Category>{group.title}</Category>
+                  <Summary>{group.summary}</Summary>
+                </div>
+                <Count>{group.skills.length} tools</Count>
+              </CardTop>
+
+              <BadgeWrap>
+                {group.skills.map((skill) => (
+                  <Badge key={skill.name}>
+                    <BadgeIcon aria-hidden="true">
+                      {skill.image ? (
+                        <SkillImage src={skill.image} alt="" loading="lazy" />
+                      ) : (
+                        skill.name
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")
+                          .slice(0, 2)
+                      )}
+                    </BadgeIcon>
+                    {skill.name}
+                  </Badge>
+                ))}
+              </BadgeWrap>
+            </Card>
+          ))}
+        </Grid>
       </Wrapper>
     </Container>
   );

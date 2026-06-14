@@ -35,8 +35,8 @@ text-overflow: ellipsis;
 
 const Card = styled.div`
     width: 650px;
-    border-radius: 10px;
-    box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+    border-radius: 18px;
+    box-shadow: 0 16px 34px rgba(2, 8, 23, 0.14);
     padding: 12px 16px;
     justify-content: space-between;
     position: relative;
@@ -46,7 +46,7 @@ const Card = styled.div`
     gap: 12px;
     transition: all 0.3s ease-in-out;
     &:hover{
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 38px rgba(2, 8, 23, 0.18);
         transform: translateY(-5px);
     }
     @media only screen and (max-width: 768px){
@@ -64,7 +64,7 @@ const Card = styled.div`
         -webkit-line-clamp: unset;
 
     }
-    border: 0.1px solid #854CE6;
+    border: 1px solid rgba(45, 212, 191, 0.18);
 `
 
 const Top = styled.div`
@@ -75,8 +75,9 @@ const Top = styled.div`
 
 const Image = styled.img`
     height: 50px;
-    background-color: #000;
-    border-radius: 10px;
+    background: ${({ theme }) => theme.card_light};
+    border-radius: 12px;
+    border: 1px solid ${({ theme }) => theme.text_secondary + "18"};
     margin-top: 4px;
     @media only screen and (max-width: 768px){
         height: 40px;
@@ -93,7 +94,7 @@ const Body = styled.div`
 const Name = styled.div`
     font-size: 18px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text_primary + 99};
+    color: ${({ theme }) => theme.text_primary};
     @media only screen and (max-width: 768px){
         font-size: 14px;
     }
@@ -102,7 +103,7 @@ const Name = styled.div`
 const Degree = styled.div`
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
+    color: ${({ theme }) => theme.text_secondary};
     @media only screen and (max-width: 768px){
         font-size: 12px;
     }
@@ -120,7 +121,7 @@ const Date = styled.div`
 const Grade = styled.div`
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
+    color: ${({ theme }) => theme.text_secondary};
     @media only screen and (max-width: 768px){
         font-size: 12px;
     }
@@ -139,7 +140,8 @@ const EducationCard = ({ education }) => {
                     <Date>{education.date}</Date>
                 </Body>
             </Top>
-            <Grade><b>Grade: </b>{education.grade}</Grade>
+            {education.grade && <Grade><b>Grade: </b>{education.grade}</Grade>}
+            {education.note && <Grade><b>Focus: </b>{education.note}</Grade>}
             <Description>
                 <Span>{education.desc}</Span>
                 {education.achievements && education.achievements.length > 0 && (

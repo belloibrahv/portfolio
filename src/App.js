@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import HeroSection from "./components/HeroSection";
+import About from "./components/About";
 import styled from "styled-components";
 import { CircularProgress, Box } from "@mui/material";
 
@@ -27,9 +28,10 @@ const Body = styled.div`
 `
 
 const Wrapper = styled.div`
-  background: linear-gradient(38.73deg, rgba(204, 0, 187, 0.15) 0%, rgba(201, 32, 184, 0) 50%), linear-gradient(141.27deg, rgba(0, 70, 209, 0) 50%, rgba(0, 70, 209, 0.15) 100%);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(45, 212, 191, 0.08), transparent 32%),
+    radial-gradient(circle at 90% 20%, rgba(56, 189, 248, 0.08), transparent 28%);
   width: 100%;
-  clip-path: polygon(0 0, 100% 0, 100% 100%,30% 98%, 0 100%);
 `
 
 // Loading component
@@ -50,6 +52,7 @@ function App() {
         <Navbar />
         <Body>
           <HeroSection />
+          <About />
           <Suspense fallback={<LoadingSpinner />}>
             <Resume />
           </Suspense>

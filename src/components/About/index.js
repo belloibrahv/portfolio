@@ -1,102 +1,304 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Bio } from '../../data/constants';
-import HeroImg from '../../images/HeroImage.png';
+import React from "react";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { Bio, communityHighlights, heroStats, resumeHighlights, workPrinciples } from "../../data/constants";
+import HeroImg from "../../images/HeroImage.png";
 
 const Container = styled.section`
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  padding: 60px 0 40px 0;
-  width: 100%;
-  background: ${({ theme }) => theme.card};
-  @media (max-width: 900px) {
-    flex-direction: column;
-    padding: 40px 0 20px 0;
+  position: relative;
+  z-index: 1;
+  padding: 36px 24px 84px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(45, 212, 191, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 0%, rgba(56, 189, 248, 0.08), transparent 24%);
+
+  @media (max-width: 768px) {
+    padding: 24px 16px 64px;
   }
 `;
 
-const Left = styled.div`
-  flex: 1;
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 1180px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0 32px;
-  @media (max-width: 900px) {
-    align-items: center;
-    padding: 0 0 24px 0;
-  }
+  gap: 24px;
 `;
 
-const Right = styled.div`
-  flex: 0 0 260px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 900px) {
-    margin-bottom: 24px;
-  }
-`;
-
-const Photo = styled.img`
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  border: 4px solid ${({ theme }) => theme.primary};
+const Eyebrow = styled.div`
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.2px;
+  color: ${({ theme }) => theme.primary};
 `;
 
 const Title = styled.h2`
-  font-size: 36px;
+  font-size: 42px;
+  line-height: 1.08;
   font-weight: 700;
   color: ${({ theme }) => theme.text_primary};
-  margin-bottom: 12px;
+  margin-top: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
-const Story = styled.p`
-  font-size: 20px;
-  color: ${({ theme }) => theme.text_secondary};
-  margin-bottom: 18px;
-  line-height: 1.6;
-`;
-
-const Highlights = styled.ul`
-  margin: 0 0 18px 0;
-  padding: 0 0 0 18px;
-  color: ${({ theme }) => theme.text_primary};
+const Desc = styled.p`
   font-size: 18px;
+  line-height: 1.8;
+  max-width: 760px;
+  color: ${({ theme }) => theme.text_secondary};
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
-const ValueSection = styled.div`
-  margin-top: 18px;
-  font-size: 17px;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Panel = styled(motion.div)`
+  background: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme }) => theme.text_secondary + "1f"};
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(2, 8, 23, 0.18);
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    border-radius: 22px;
+  }
+`;
+
+const Story = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;
+
+const StoryText = styled.p`
+  font-size: 16px;
+  line-height: 1.85;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+
+const HighlightList = styled.ul`
+  display: grid;
+  gap: 12px;
+  list-style: none;
+`;
+
+const HighlightItem = styled.li`
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(45, 212, 191, 0.06);
+  border: 1px solid rgba(45, 212, 191, 0.12);
+  color: ${({ theme }) => theme.text_primary};
+  line-height: 1.65;
+`;
+
+const Strong = styled.span`
+  display: inline-block;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+  margin-right: 6px;
+`;
+
+const Profile = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const AvatarShell = styled.div`
+  border-radius: 24px;
+  padding: 14px;
+  background:
+    linear-gradient(145deg, rgba(45, 212, 191, 0.12), rgba(56, 189, 248, 0.08)),
+    ${({ theme }) => theme.card_light};
+`;
+
+const Avatar = styled.img`
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+`;
+
+const ProfileTitle = styled.h3`
+  font-size: 24px;
+  line-height: 1.2;
+  color: ${({ theme }) => theme.text_primary};
+`;
+
+const ProfileMeta = styled.p`
+  font-size: 15px;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+
+const StatGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StatCard = styled.div`
+  padding: 14px;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.text_secondary + "16"};
+`;
+
+const StatLabel = styled.div`
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: ${({ theme }) => theme.text_secondary};
+  margin-bottom: 6px;
+`;
+
+const StatValue = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+  line-height: 1.45;
+`;
+
+const SubsectionTitle = styled.h4`
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: ${({ theme }) => theme.primary};
+`;
+
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const MiniCard = styled.div`
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid ${({ theme }) => theme.text_secondary + "1f"};
+`;
+
+const MiniCardTitle = styled.div`
+  font-size: 15px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+  margin-bottom: 8px;
+`;
+
+const MiniCardText = styled.div`
+  font-size: 14px;
+  line-height: 1.7;
   color: ${({ theme }) => theme.text_secondary};
 `;
 
 const About = () => (
   <Container id="about">
-    <Right>
-      <Photo src={HeroImg} alt="Ibrahim Bello" />
-    </Right>
-    <Left>
-      <Title>About Me</Title>
-      <Story>
-        Hi, I'm <b>{Bio.name}</b> — a passionate full-stack developer from Nigeria. My journey began with curiosity and a drive to solve real-world problems with code. Over the years, I've helped global startups build fast, scalable web apps, AI tools, and robust backends.<br /><br />
-        I thrive in remote, multicultural teams and love turning ideas into reality. My mission is to empower founders and teams to launch, iterate, and scale products that matter.
-      </Story>
-      <Highlights>
-        <li>🌍 Remote-first, startup-friendly mindset</li>
-        <li>🛠️ Deep expertise: React, TypeScript, Python, Docker, PostgreSQL</li>
-        <li>🚀 Fast prototyping & delivery for MVPs and scale-ups</li>
-        <li>🤝 Collaborative, transparent, and always learning</li>
-      </Highlights>
-      <ValueSection>
-        <b>Values:</b> Empathy, curiosity, and a relentless focus on user value. I believe in building with purpose, learning from every challenge, and making tech accessible to all.
-      </ValueSection>
-    </Left>
+    <Wrapper>
+      <Eyebrow>About the work</Eyebrow>
+      <Title>Built for teams that want clarity, calm, and strong delivery.</Title>
+      <Desc>
+        I’m {Bio.name}, a product-minded engineer based in Lagos. My work sits at the
+        intersection of engineering leadership, hands-on frontend delivery, reliable
+        backend systems, and a willingness to go deep on whatever helps the product ship
+        well.
+      </Desc>
+
+      <Grid>
+        <Panel
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <Story>
+            <SubsectionTitle>What I care about</SubsectionTitle>
+            <StoryText>
+              {Bio.description}
+            </StoryText>
+            <HighlightList>
+              {resumeHighlights.map((item) => (
+                <HighlightItem key={item}>
+                  <Strong>Resume signal</Strong>
+                  {item}
+                </HighlightItem>
+              ))}
+            </HighlightList>
+            <StatGrid>
+              {heroStats.map((stat) => (
+                <StatCard key={stat.label}>
+                  <StatLabel>{stat.label}</StatLabel>
+                  <StatValue>{stat.value}</StatValue>
+                </StatCard>
+              ))}
+            </StatGrid>
+          </Story>
+        </Panel>
+
+        <Panel
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease: "easeOut", delay: 0.05 }}
+        >
+          <Profile>
+            <AvatarShell>
+              <Avatar src={HeroImg} alt={`${Bio.name} portrait`} />
+            </AvatarShell>
+            <ProfileTitle>{Bio.preferredName}</ProfileTitle>
+            <ProfileMeta>
+              Technical lead, full-stack engineer, and product collaborator. I like working
+              on systems that need to be trusted by real people and understood by real teams.
+            </ProfileMeta>
+            <CardGrid>
+              {workPrinciples.map((principle) => (
+                <MiniCard key={principle.title}>
+                  <MiniCardTitle>{principle.title}</MiniCardTitle>
+                  <MiniCardText>{principle.description}</MiniCardText>
+                </MiniCard>
+              ))}
+            </CardGrid>
+            <CardGrid>
+              {communityHighlights.map((item) => (
+                <MiniCard key={item.title}>
+                  <MiniCardTitle>{item.title}</MiniCardTitle>
+                  <MiniCardText>{item.description}</MiniCardText>
+                </MiniCard>
+              ))}
+            </CardGrid>
+          </Profile>
+        </Panel>
+      </Grid>
+    </Wrapper>
   </Container>
 );
 

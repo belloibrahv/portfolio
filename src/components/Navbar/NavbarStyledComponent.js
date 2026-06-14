@@ -7,7 +7,7 @@ export const Nav = styled.nav`
   backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(12px)' : 'none')};
   -webkit-backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(12px)' : 'none')};
   box-shadow: ${({ scrolled }) =>
-    scrolled ? '0 4px 24px rgba(0,0,0,0.12)' : 'none'};
+    scrolled ? '0 4px 24px rgba(2,8,23,0.18)' : 'none'};
   height: 80px;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ export const Span = styled.div`
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #00C9A7 0%, #845EC2 100%);
+  background: linear-gradient(90deg, #2DD4BF 0%, #38BDF8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -93,7 +93,7 @@ export const NavLink = styled.span`
     left: 0;
     width: ${({ active }) => (active ? '100%' : '0')};
     height: 2px;
-    background: linear-gradient(90deg, #00C9A7, #845EC2);
+    background: linear-gradient(90deg, #2DD4BF, #38BDF8);
     transition: width 0.3s ease;
   }
   &:hover::after {

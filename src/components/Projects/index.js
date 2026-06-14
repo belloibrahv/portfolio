@@ -63,9 +63,9 @@ const Projects = React.memo(({openModal,setOpenModal}) => {
   return (
     <Container id="projects">
       <Wrapper>
-        <Title>Projects</Title>
+        <Title>Selected Work</Title>
         <Desc>
-          Selected work across web platforms, dashboards, and data products built for performance and clarity.
+          A curated mix of enterprise systems, AI-enabled products, open-source work, and client delivery.
         </Desc>
         <ToggleButtonGroup >
           {toggle === 'all' ?
@@ -80,16 +80,10 @@ const Projects = React.memo(({openModal,setOpenModal}) => {
             <ToggleButton value="web app" onClick={() => handleToggle('web app')}>Web Apps</ToggleButton>
           }
           <Divider />
-          {toggle === 'android app' ?
-            <ToggleButton active value="android app" onClick={() => handleToggle('android app')}>Android Apps</ToggleButton>
-            :
-            <ToggleButton value="android app" onClick={() => handleToggle('android app')}>Android Apps</ToggleButton>
-          }
-          <Divider />
           {toggle === 'machine learning' ?
-            <ToggleButton active value="machine learning" onClick={() => handleToggle('machine learning')}>Machine Learning</ToggleButton>
+            <ToggleButton active value="machine learning" onClick={() => handleToggle('machine learning')}>AI / ML</ToggleButton>
             :
-            <ToggleButton value="machine learning" onClick={() => handleToggle('machine learning')}>Machine Learning</ToggleButton>
+            <ToggleButton value="machine learning" onClick={() => handleToggle('machine learning')}>AI / ML</ToggleButton>
           }
           <Divider />
           {toggle === 'open source' ?

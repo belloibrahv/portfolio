@@ -68,11 +68,11 @@ const Blog = () => {
   const carouselBlogs = blogs.slice(1, 6);
 
   return (
-    <Container id="articles">
+    <Container id="blog">
       <Wrapper>
-        <Title>Latest Articles</Title>
+        <Title>Insights & Writing</Title>
         <Desc>
-          Sharing insights, tutorials, and thoughts on technology, software development, and more.
+          A few technical notes, writing samples, and practical lessons that show how I think about building software.
         </Desc>
 
         {featured && (

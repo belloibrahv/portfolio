@@ -1,23 +1,79 @@
 export const Bio = {
-  name: "Ibrahim Bello",
+  name: "Bello Sheu Ibrahim",
+  preferredName: "Ibrahim Bello",
   roles: [
-    "Software Engineer",
-    "Full Stack Developer",
-    "AI Tools Builder",
-    "Remote Team Collaborator"
+    "Technical Lead",
+    "Full-Stack & Senior Frontend Engineer",
+    "Senior Frontend Engineer",
+    "AI Product Builder"
   ],
   description:
-    "👋🏽 Hey there, I'm Ibrahim — a full-stack developer from Nigeria helping global startups build fast, scalable web apps. Whether it's React dashboards, AI tools, or backend APIs, I make ideas real — fast. Let's build together.",
+    "Technical Lead and full-stack engineer with 6+ years shipping production web applications across healthcare, finance, education, and government. I like turning complex requirements into calm, reliable products, with a strong focus on performance, security, and team delivery.",
   github: "https://github.com/belloibrahv",
+  website: "https://belloibrahim.vercel.app",
   resume:
-    "https://docs.google.com/document/d/1X3_dSyZumk6Rn2-X_UQzm-aeSSxDJJhD/edit?usp=sharing",
+    "https://docs.google.com/document/d/17waZelIf_FT3b7o6gTN3bXCRLH16_z7IFKjMnruj9Io/edit?usp=sharing",
   linkedin: "https://www.linkedin.com/in/ibrahim-bello-8951ba187",
   twitter: "https://x.com/BelloDeveloper",
+  email: "sheuibrahimb@gmail.com",
+  phone: "+234 707 234 6264",
+  location: "Lagos, Nigeria",
 };
+
+export const heroStats = [
+  { label: "Experience", value: "6+ years" },
+  { label: "Focus", value: "Enterprise + AI products" },
+  { label: "Delivery", value: "React to production" },
+];
+
+export const resumeHighlights = [
+  "Technical Lead growing from hands-on frontend work into end-to-end ownership for enterprise products.",
+  "Strong command of React, Next.js, TypeScript, Node.js, Laravel, Python, and the supporting product stack.",
+  "Built systems for healthcare, finance, education, public-sector teams, and open-source ecosystems.",
+  "Known for performance tuning, practical security, clean APIs, and mentoring teams without drama.",
+];
+
+export const workPrinciples = [
+  {
+    title: "Calm execution",
+    description:
+      "I prefer steady delivery, clear communication, and systems that do not make the team fight the product.",
+  },
+  {
+    title: "Product thinking",
+    description:
+      "I pay attention to the business goal, the user journey, and the technical path all at once.",
+  },
+  {
+    title: "Team leverage",
+    description:
+      "I like leaving codebases, docs, and workflows cleaner so the next engineer can move faster.",
+  },
+];
+
+export const communityHighlights = [
+  {
+    title: "Open source",
+    description:
+      "Contributed to Hedera JSON RPC Relay, Hiero Ledger, and CocoIndex.",
+  },
+  {
+    title: "Community",
+    description:
+      "Volunteered with Google Developer Group Lagos on events with 2,000+ attendees.",
+  },
+  {
+    title: "Growth",
+    description:
+      "Completed the Google Africa Developer Scholarship in JavaScript and Responsive UI Development.",
+  },
+];
 
 export const skills = [
   {
     title: "Frontend",
+    summary:
+      "Interfaces, design systems, and product flows built for speed and clarity.",
     skills: [
       {
         name: "React Js",
@@ -25,29 +81,13 @@ export const skills = [
           "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K",
       },
       {
-        name: "Redux",
-        image: "https://cdn.simpleicons.org/redux/764ABC",
-      },
-      {
-        name: "React Query",
-        image: "https://cdn.simpleicons.org/reactquery/FF4154",
-      },
-      {
-        name: "React Router DOM",
-        image: "https://cdn.simpleicons.org/reactrouter/CA4245",
-      },
-      {
         name: "Next Js",
         image: "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
       },
       {
-        name: "HTML",
-        image: "https://www.w3.org/html/logo/badge/html5-badge-h-solo.png",
-      },
-      {
-        name: "CSS",
+        name: "TypeScript",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
       },
       {
         name: "JavaScript",
@@ -55,9 +95,13 @@ export const skills = [
           "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png",
       },
       {
-        name: "TypeScript",
+        name: "HTML5",
+        image: "https://www.w3.org/html/logo/badge/html5-badge-h-solo.png",
+      },
+      {
+        name: "CSS3",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png",
       },
       {
         name: "Tailwind CSS",
@@ -67,10 +111,24 @@ export const skills = [
         name: "Material UI",
         image: "https://cdn.simpleicons.org/mui/007FFF",
       },
+      {
+        name: "Redux Toolkit",
+        image: "https://cdn.simpleicons.org/redux/764ABC",
+      },
+      {
+        name: "React Query",
+        image: "https://cdn.simpleicons.org/reactquery/FF4154",
+      },
+      {
+        name: "Zustand",
+        image: "https://github.com/pmndrs/zustand/raw/main/bear.jpg",
+      },
     ],
   },
   {
     title: "Backend",
+    summary:
+      "APIs, services, and the business logic that keeps products reliable in production.",
     skills: [
       {
         name: "Node Js",
@@ -110,7 +168,9 @@ export const skills = [
     ],
   },
   {
-    title: "Cloud",
+    title: "Cloud & Storage",
+    summary:
+      "Infrastructure, data stores, and deployment surfaces that support real teams.",
     skills: [
       {
         name: "AWS",
@@ -135,7 +195,9 @@ export const skills = [
     ],
   },
   {
-    title: "AI",
+    title: "AI & Automation",
+    summary:
+      "Model APIs and AI tooling used to ship more helpful, more adaptive products.",
     skills: [
       {
         name: "OpenAI",
@@ -168,7 +230,9 @@ export const skills = [
     ],
   },
   {
-    title: "Others",
+    title: "Delivery & Tools",
+    summary:
+      "The collaboration, deployment, and product workflow tools that keep shipping smooth.",
     skills: [
       {
         name: "Git",
@@ -207,10 +271,20 @@ export const experiences = [
   {
     id: 1,
     img: "http://techvaults.com/wp-content/uploads/2023/10/TechVaults-Logo-b2.png",
-    role: "Software Engineer",
-    company: "TechVaults Limited, Lagos, Nigeria",
-    date: "2019 – Present",
-    desc: "• Develop and maintain full-stack web applications using PHP, Laravel, JavaScript, jQuery, MySQL, HTML5, and CSS3 for healthcare, finance, and education clients including Custodian PLC.\n• Manage complete project lifecycle from requirements gathering to deployment, delivering scalable solutions that increased client online transactions by 30%.\n• Optimize MySQL database performance through indexing and normalization, improving query performance by 40%.\n• Build RESTful APIs and integrate third-party services including payment gateways and data synchronization platforms.\n• Lead code reviews and mentor junior developers while managing Git workflows including branching, merging, and pull requests.",
+    role: "Technical Lead (Software Engineer)",
+    company: "TechVaults Limited",
+    location: "Lagos, Nigeria",
+    date: "2019 - Present",
+    summary:
+      "Promoted from individual contributor into technical leadership for client-facing products across healthcare, finance, and education.",
+    highlights: [
+      "Led planning, architecture, and delivery for enterprise web applications, coordinating sprint cycles and release schedules across multiple projects including Custodian PLC.",
+      "Built production-grade systems with PHP (Laravel), Node.js, JavaScript, MySQL, HTML5, and CSS3, while expanding recent work into React and Next.js frontends.",
+      "Managed the full delivery lifecycle from requirements to post-launch support, helping increase client online transaction volume by up to 30%.",
+      "Optimised MySQL performance through indexing and schema normalisation, improving query response times by up to 40%.",
+      "Defined team workflows around branching, pull requests, code reviews, documentation, and mentoring, then used those habits to raise team quality.",
+      "Built TrustEscrow NG, an SMS-based escrow platform for Nigerian peer-to-peer commerce, with Node.js, PostgreSQL, Redis, BullMQ, Africa's Talking, Paystack, Prembly, and multi-provider AI routing.",
+    ],
     skills: [
       "PHP",
       "Laravel",
@@ -222,16 +296,24 @@ export const experiences = [
       "REST APIs",
       "Git",
     ],
-    problem: "",
-    outcome: "",
   },
   {
     id: 2,
     img: "https://i.postimg.cc/htwDn2cW/Screenshot-2026-02-11-at-13-48-04.png",
     role: "Software Engineer (Contract)",
-    company: "National Nutrition Budget Tracking System (NNBTS), Remote",
-    date: "Nov 2025 – Present",
-    desc: "• Architected and delivered a complete frontend application for an enterprise nutrition budget tracking system using Next.js 16, React, TypeScript, and Tailwind CSS, serving three distinct user roles with role-based access control.\n• Built a responsive, accessible dashboard with real-time data synchronization via React Query, supporting 1,000+ row datasets with pagination, filtering, and CSV import/export.",
+    company: "National Nutrition Budget Tracking System (NNBTS)",
+    location: "Remote",
+    date: "Nov 2025 - Present",
+    summary:
+      "Sole frontend engineer for a federal nutrition finance platform serving policy and delivery stakeholders.",
+    highlights: [
+      "Architected and delivered the complete client-facing application with Next.js 16, React, TypeScript, and Tailwind CSS, built around three user roles with role-based access control.",
+      "Built a responsive and accessible dashboard with real-time data sync via React Query, supporting 1,000+ row datasets with server-side pagination, dynamic filtering, and CSV import/export.",
+      "Developed 20+ reusable React components including budget, survey, and administration modals, each aligned pixel-for-pixel with Figma specifications.",
+      "Implemented authentication and authorisation with NextAuth.js v5, session monitoring, token expiry handling, and API-backed permission checks.",
+      "Reached sub-2-second page loads and a 90+ Lighthouse accessibility score through Zustand state management, lazy loading, code splitting, and memoisation.",
+      "Integrated 15+ RESTful endpoints with structured error handling and runtime validation using Zod.",
+    ],
     skills: [
       "Next.js",
       "React",
@@ -239,35 +321,44 @@ export const experiences = [
       "Tailwind CSS",
       "React Query",
     ],
-    problem: "",
-    outcome: "",
   },
   {
     id: 3,
     img: "https://i.postimg.cc/QxvtrYKC/aidub-logo.png",
-    role: "Frontend Engineer",
-    company: "Aidub Tech. Team",
-    date: "Dec 2023 - Present",
-    desc: "Leading frontend development for Telerix Platforms project, creating responsive and intuitive user interfaces for a telemetry data visualization and analytics platform. Built interactive dashboards and real-time data monitoring components that help users optimize equipment performance and gain actionable insights from their telemetry data.",
+    role: "Software Engineer (Freelance)",
+    company: "Independent Clients",
+    location: "Remote",
+    date: "Nov 2024 - Feb 2025",
+    summary:
+      "Delivered custom web products for small teams that needed speed, clarity, and clean handoff.",
+    highlights: [
+      "Delivered e-commerce and booking platforms using React and Next.js, translating client briefs into polished, production-ready applications.",
+      "Managed complete project cycles from requirements gathering through deployment and client handover, keeping communication direct and predictable.",
+      "Built responsive interfaces optimised for different devices and screen sizes using progressive enhancement principles.",
+    ],
     skills: [
       "React",
-      "TypeScript",
-      "Material UI",
-      "Redux Toolkit",
-      "Chart.js",
+      "Next.js",
       "Responsive Design",
-      "REST API Integration",
+      "Client Communication",
+      "Deployment",
     ],
-    problem: "",
-    outcome: "",
   },
   {
     id: 4,
     img: "https://i.postimg.cc/DwnNDZ04/image.jpg&auto=format&fit=crop&w=2070&q=80",
     role: "Frontend Engineer",
-    company: "Varuna Inc, Texas United State.",
-    date: "May 2023 - Feb 2024",
-    desc: "Developed and maintained modern, responsive web applications using React.js and Material UI. Implemented state management solutions with Zustand and optimized API data fetching with React Query to ensure seamless user experiences across various devices and platforms.",
+    company: "Varuna Inc.",
+    location: "Texas City, TX, USA (Remote)",
+    date: "2023 - 2024",
+    summary:
+      "Re-architected the frontend for real-time utility monitoring and improved the product's scalability.",
+    highlights: [
+      "Co-led a re-architecture of the water monitoring frontend from a legacy codebase into a modern React stack using Zustand, Material UI, and React Query.",
+      "Delivered a 50% measurable improvement in rendering performance and overall system scalability.",
+      "Drove code quality through code reviews, debugging sessions, and systematic refactoring.",
+      "Integrated the frontend with existing backend systems and external sensor APIs to preserve real-time reliability for utility operators.",
+    ],
     skills: [
       "ReactJS",
       "Material UI",
@@ -280,8 +371,6 @@ export const experiences = [
       "API Integration",
     ],
     doc: "https://i.postimg.cc/N0FrxJVx/Screenshot-2024-05-08-at-09-38-03.png",
-    problem: "",
-    outcome: "",
   },
   {
     id: 5,
@@ -289,7 +378,13 @@ export const experiences = [
     role: "Frontend Developer - Build With AI Hackathon",
     company: "Google",
     date: "April 2024",
-    desc: "Led frontend development for Aleeyah, an AI-driven food decision platform. Created an intuitive user interface that seamlessly integrates with AI recommendation engines, focusing on user experience design and responsive layouts to help users make informed dietary choices.",
+    summary:
+      "Hackathon work focused on an AI-driven dietary experience with an emphasis on approachable UI.",
+    highlights: [
+      "Led frontend development for Aleeyah, an AI-driven food decision platform.",
+      "Created an intuitive interface that integrates with recommendation engines and keeps the experience easy to explore.",
+      "Focused on responsive layouts and user experience decisions that help people make informed dietary choices.",
+    ],
     skills: [
       "React",
       "JavaScript",
@@ -299,8 +394,6 @@ export const experiences = [
       "User Experience",
     ],
     doc: "",
-    problem: "",
-    outcome: "",
   },
 ];
 
@@ -308,21 +401,12 @@ export const education = [
   {
     id: 0,
     img: "https://i.postimg.cc/66rqNfLf/ede.png",
-    school: "Edexcel University Cotonou, Republic of Benin",
-    date: "Oct 2016 - Dec 2019",
-    grade: "3.90 CGPA",
-    desc: "Bachelor's degree in Computer Science",
-    degree: "Bachelor of Technology - BTech, Computer Science",
-    achievements: [],
-  },
-  {
-    id: 1,
-    img: "https://i.postimg.cc/nz0DpKqz/olabisi-onabanjo-university-o-o-u-logo.jpg",
-    school: "Olabisi Onabanjo University(O.O.U.C)",
-    date: "Sept 2015 - Oct 2017",
-    grade: "3.42",
-    desc: "Diploma, Computer Science",
-    degree: "Diploma, Computer Science",
+    school: "Edexcel University, Benin",
+    date: "May 2016 - Dec 2019",
+    grade: "",
+    note: "Final year project focused on applied web systems design.",
+    desc: "Completed comprehensive coursework in data structures, algorithms, operating systems, software engineering, and computer networking. Final year project focused on applied web systems design.",
+    degree: "B.Sc. Computer Science",
     achievements: [],
   },
 ];

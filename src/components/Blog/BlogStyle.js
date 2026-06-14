@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: radial-gradient(circle at 20% 20%, rgba(132, 94, 194, 0.12), transparent 35%),
-    radial-gradient(circle at 80% 10%, rgba(0, 201, 167, 0.08), transparent 35%);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(45, 212, 191, 0.10), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.08), transparent 35%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +45,7 @@ export const Title = styled.div`
     height: 3px;
     bottom: -10px;
     left: 25%;
-    background: linear-gradient(90deg, #00C9A7 0%, rgba(132, 94, 194, 0.9) 100%);
+    background: linear-gradient(90deg, #2DD4BF 0%, #38BDF8 100%);
     border-radius: 2px;
   }
   
@@ -124,9 +125,9 @@ export const FeaturedBadge = styled.span`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: rgba(0, 201, 167, 0.2);
+  background: rgba(45, 212, 191, 0.16);
   color: #ffffff;
-  border: 1px solid rgba(0, 201, 167, 0.4);
+  border: 1px solid rgba(45, 212, 191, 0.30);
 `;
 
 export const FeaturedTitle = styled.h3`

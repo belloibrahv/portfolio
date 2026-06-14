@@ -69,7 +69,7 @@ const GitHubActivity = React.memo(() => {
 
   return (
     <Box my={4}>
-      <Typography variant="h6" component="div" color="rgba(153, 0, 255, 1)">
+      <Typography variant="h6" component="div" color="#2DD4BF">
         Latest Merged Pull Requests
       </Typography>
       {mergedPRs.length > 0 ? (
@@ -80,7 +80,7 @@ const GitHubActivity = React.memo(() => {
                 href={pr.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "rgba(153, 0, 255, 1)" }}
+                style={{ textDecoration: "none", color: "#38BDF8" }}
               >
                 {pr.title}
               </a>

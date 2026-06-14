@@ -2,8 +2,9 @@ import styled from 'styled-components';
 // import _default from '../../themes/default';
 
 export const Container = styled.div`
-    background: radial-gradient(circle at 10% 20%, rgba(0, 201, 167, 0.06), transparent 35%),
-      radial-gradient(circle at 90% 10%, rgba(132, 94, 194, 0.08), transparent 35%);
+    background:
+      radial-gradient(circle at 10% 20%, rgba(45, 212, 191, 0.08), transparent 35%),
+      radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.08), transparent 35%);
     display: flex;
     flex-direction: column;
     justify-content: center;

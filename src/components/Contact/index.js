@@ -24,8 +24,9 @@ const Container = styled.div`
   z-index: 1;
   padding: 70px 24px 90px;
   overflow: hidden;
-  background: radial-gradient(circle at 15% 15%, rgba(0, 201, 167, 0.08), transparent 35%),
-    radial-gradient(circle at 85% 10%, rgba(132, 94, 194, 0.12), transparent 35%);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.10), transparent 35%);
   @media (max-width: 768px) {
     padding: 40px 16px 60px;
   }
@@ -64,7 +65,7 @@ const GlowOne = styled(BackgroundGlow)`
   height: 320px;
   left: -120px;
   top: 120px;
-  background: radial-gradient(circle, rgba(0, 201, 167, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.42), transparent 70%);
 `;
 
 const GlowTwo = styled(BackgroundGlow)`
@@ -73,7 +74,7 @@ const GlowTwo = styled(BackgroundGlow)`
   right: -120px;
   top: 40px;
   animation-delay: 2s;
-  background: radial-gradient(circle, rgba(132, 94, 194, 0.55), transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.50), transparent 70%);
 `;
 
 const ContactLayout = styled.div`
@@ -176,7 +177,7 @@ const InfoCard = styled.div`
   &:nth-child(2) { animation-delay: 1.6s; }
   &:nth-child(3) { animation-delay: 3.2s; }
   &:hover {
-    border-color: rgba(132, 94, 194, 0.35);
+    border-color: rgba(45, 212, 191, 0.30);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
   }
@@ -199,7 +200,7 @@ const InfoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 201, 167, 0.8) 0%, rgba(132, 94, 194, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.85) 0%, rgba(56, 189, 248, 0.90) 100%);
   border-radius: 10px;
   color: #fff;
   font-size: 18px;
@@ -270,7 +271,7 @@ const ContactInput = styled.input`
   &:focus,
   &:focus-visible {
     border-color: ${({ theme }) => theme.primary};
-    box-shadow: 0 0 0 3px rgba(132, 94, 194, 0.18);
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.18);
   }
   @media (max-width: 640px) {
     padding: 12px 16px;
@@ -297,7 +298,7 @@ const ContactInputMessage = styled.textarea`
   &:focus,
   &:focus-visible {
     border-color: ${({ theme }) => theme.primary};
-    box-shadow: 0 0 0 3px rgba(132, 94, 194, 0.18);
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.18);
   }
   @media (max-width: 640px) {
     padding: 12px 16px;
@@ -313,7 +314,7 @@ const ContactButton = styled.button`
   width: 100%;
   min-height: 48px;
   text-align: center;
-  background: linear-gradient(90deg, #00C9A7 0%, #845EC2 50%, #00C9A7 100%);
+  background: linear-gradient(90deg, #2DD4BF 0%, #38BDF8 50%, #2DD4BF 100%);
   background-size: 200% 100%;
   padding: 14px 20px;
   border-radius: 12px;
@@ -349,14 +350,14 @@ const ContactButton = styled.button`
 `;
 
 const MessageSent = styled.div`
-  color: #00C9A7;
+  color: #2DD4BF;
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  background: rgba(0, 201, 167, 0.08);
+  background: rgba(45, 212, 191, 0.08);
   border-radius: 12px;
   padding: 12px 18px;
-  box-shadow: 0 6px 18px rgba(0,201,167,0.12);
+  box-shadow: 0 6px 18px rgba(45, 212, 191, 0.12);
   animation: popIn 0.5s ease-out both;
   @keyframes popIn {
     from { opacity: 0; transform: translateY(8px); }
@@ -458,14 +459,14 @@ const Contact = () => {
       <GlowTwo />
       <Wrapper>
         <Title>
-          <FiSend style={{ color: '#845EC2', fontSize: 36 }} />
+                <FiSend style={{ color: '#2DD4BF', fontSize: 36 }} />
           Get In Touch
         </Title>
         <CTA>Let's Talk About Your Product</CTA>
         <Desc>
-          Software Engineer focused on building reliable, scalable web products end to end.
-          I help teams design, build, and improve modern applications, from user
-          interfaces and APIs to deployment and performance.
+          Technical Lead focused on building reliable, scalable web products end to end.
+          I help teams design, build, and improve modern applications, from user interfaces
+          and APIs to deployment, performance, and long-term maintainability.
         </Desc>
         <ContactLayout>
           <LeftPanel>

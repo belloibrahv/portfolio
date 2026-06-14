@@ -6,11 +6,12 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { Bio } from '../../data/constants';
 
 const NAV_LINKS = [
+  { to: 'home', label: 'Home' },
   { to: 'about', label: 'About' },
-  { to: 'skills', label: 'Skills' },
+  { to: 'skills', label: 'Capabilities' },
   { to: 'experience', label: 'Experience' },
   { to: 'projects', label: 'Projects' },
-  { to: 'blog', label: 'Blog' },
+  { to: 'blog', label: 'Insights' },
   { to: 'education', label: 'Education' },
   { to: 'contact', label: 'Contact' },
 ];
@@ -18,7 +19,7 @@ const NAV_LINKS = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,7 +78,7 @@ const Navbar = () => {
             GitHub
           </GitHubButton>
           <LinkScroll to="contact" smooth offset={-80} duration={500}>
-            <GitHubButton as="span" style={{ marginLeft: 12, background: 'linear-gradient(90deg, #00C9A7 0%, #845EC2 100%)', border: 'none', color: '#fff' }}>
+            <GitHubButton as="span" style={{ marginLeft: 12, background: 'linear-gradient(135deg, #2DD4BF 0%, #38BDF8 100%)', border: 'none', color: '#fff' }}>
               Let's Talk
             </GitHubButton>
           </LinkScroll>
