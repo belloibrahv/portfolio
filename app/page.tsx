@@ -10,6 +10,7 @@ import { Tools } from "@/components/tools";
 import { Work } from "@/components/work";
 import { WritingSection } from "@/components/writing-section";
 import { profile } from "@/content/resume";
+import { getPosts } from "@/lib/writing";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -37,7 +38,7 @@ export default function Home() {
           <Stats />
         </div>
         <Marquee />
-        <Work />
+        <Work published={getPosts().map((post) => post.slug)} />
         <CareerPath />
         <Tools />
         <WritingSection />
