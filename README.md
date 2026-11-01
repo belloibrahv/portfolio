@@ -1,22 +1,22 @@
 # Bello Sheu Ibrahim Portfolio
 
-Personal portfolio for Bello Sheu Ibrahim with resume-driven content, selected work, and a resume-aware chatbot.
+Personal portfolio, built with Next.js 16, TypeScript and Tailwind CSS on the IBGlobals brand.
 
 ## Run locally
 
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
-## AI chat setup
+## Update the content
 
-Set these environment variables if you want the chat assistant to use live model responses:
+All copy lives in `content/resume.ts`. When the resume changes, edit that file and replace `public/Ibrahim_Bello_Resume.pdf`.
 
-- `REACT_APP_AI_PROVIDER=groq`
-- `REACT_APP_GROQ_API_KEY=...`
-- `REACT_APP_GROQ_MODEL=llama-3.3-70b-versatile`
-- `REACT_APP_GEMINI_API_KEY=...`
-- `REACT_APP_GEMINI_MODEL=gemini-2.0-flash-exp`
+## Checks
 
-If the live providers are unavailable, the assistant falls back to local resume-aware responses.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
