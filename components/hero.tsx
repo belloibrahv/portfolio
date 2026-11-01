@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { profile } from "@/content/resume";
 
@@ -44,6 +45,9 @@ export function Hero() {
                 <path d="M2 8h11M9 4l4 4-4 4" />
               </svg>
             </a>
+          </Button>
+          <Button asChild variant="outline" className="flex-[1_1_150px] sm:flex-none">
+            <Link href="/writing">My writings</Link>
           </Button>
           <Button asChild variant="outline" className="flex-[1_1_150px] sm:flex-none">
             <a href={profile.resume} download>

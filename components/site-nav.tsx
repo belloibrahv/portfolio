@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getPosts } from "@/lib/writing";
 
 const links = [
   { href: "/#work", label: "Work" },
@@ -33,11 +32,9 @@ export function SiteNav() {
               {link.label}
             </Link>
           ))}
-          {getPosts().length > 0 && (
-            <Link href="/writing" className="relative py-3 text-[15px] font-medium no-underline after:absolute after:inset-x-0 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-indigo after:transition-transform hover:after:scale-x-100">
+          <Link href="/writing" className="relative py-3 text-[15px] font-medium no-underline after:absolute after:inset-x-0 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-indigo after:transition-transform hover:after:scale-x-100">
               Writing
             </Link>
-          )}
           <Button asChild>
             <Link href="/#contact">Contact</Link>
           </Button>
