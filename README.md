@@ -15,6 +15,17 @@ All copy lives in `content/resume.ts`. When the resume changes, edit that file a
 
 ## Write something
 
+Go to `/admin`, sign in, and press **New piece**. **Publish** saves the piece to `main`, and it joins the home page, `/writing`, the RSS feed and the sitemap on the next deploy, about a minute later. The file name, and so the URL, is set when a piece is first saved.
+
+The admin needs two environment variables on Vercel (Production), followed by a redeploy:
+
+- `ADMIN_PASSWORD`: at least 16 characters. Changing it signs out every session.
+- `GITHUB_TOKEN`: a fine-grained GitHub token for this repository only, with **Contents: Read and write**.
+
+Drafts are saved to this repository, so while the repository is public, anyone can read them on GitHub.
+
+### From the command line
+
 ```bash
 npm run new -- "My title" market    # or workshop, for technical pieces
 ```

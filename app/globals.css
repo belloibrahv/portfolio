@@ -290,6 +290,23 @@
 }
 
 @layer components {
+  /* Admin form fields */
+  .field {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-md);
+    background: var(--color-raised);
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .field:focus {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 0;
+    border-color: var(--color-indigo);
+  }
+
   /* Writing: each piece's generated cloth */
   .cloth {
     position: relative;
