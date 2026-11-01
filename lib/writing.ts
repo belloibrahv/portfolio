@@ -52,7 +52,9 @@ function readPost(file: string): Post {
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) throw new Error(`${file}: use lowercase words and single hyphens in the file name`);
   if (RESERVED.has(slug)) throw new Error(`${file}: "${slug}" is already a page on the site, choose another name`);
   const { data, content } = matter(readFileSync(path.join(DIR, file), "utf8"));
-  for (const field of ["title", "summary", "date", "thread"]) if (!data[field]) throw new Error(`${file}: add "${field}" to the front matter`);
+  // A draft may be unfinished, so a missing summary only blocks publishing.
+  const required = data.draft === true ? ["title", "date", "thread"] : ["title", "summary", "date", "thread"];
+  for (const field of required) if (!data[field]) throw new Error(`${file}: add "${field}" to the front matter`);
   if (!(data.thread in THREADS)) throw new Error(`${file}: thread must be workshop or market`);
   return {
     slug,
