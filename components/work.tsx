@@ -60,7 +60,9 @@ export function Work() {
           <div className="adire adire-strong" />
           <div className="relative -mx-1 h-3.5 rounded-b-md bg-slot sm:-mx-3.5" />
           {/* The key remounts the receipt, so it prints again on each pick. */}
-          <ReceiptPaper key={active.id} receipt={active} />
+          <div aria-live="polite" aria-atomic="true" className="relative">
+            <ReceiptPaper key={active.id} receipt={active} />
+          </div>
         </div>
       </div>
     </section>
@@ -69,7 +71,7 @@ export function Work() {
 
 function ReceiptPaper({ receipt }: { receipt: Receipt }) {
   return (
-    <article aria-live="polite" className="receipt relative mx-auto max-w-[480px] text-ink">
+    <article className="receipt relative mx-auto max-w-[480px] text-ink">
       <div className="relative bg-raised px-[clamp(18px,2.4vw,32px)] pt-7 pb-5.5">
         <div className="receipt-kicker flex justify-between gap-3">
           <span>IBGlobals Tech</span>

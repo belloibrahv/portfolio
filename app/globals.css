@@ -181,7 +181,8 @@
     width: max-content;
     animation: slide 34s linear infinite;
   }
-  .marquee:hover .marquee-track {
+  .marquee:hover .marquee-track,
+  .marquee[data-paused="true"] .marquee-track {
     animation-play-state: paused;
   }
   .marquee-sep {
@@ -359,6 +360,9 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .marquee-toggle {
+    display: none;
   }
   *,
   *::before,
