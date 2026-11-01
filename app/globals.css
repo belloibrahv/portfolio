@@ -289,6 +289,298 @@
   }
 }
 
+@layer components {
+  /* Writing: each piece's generated cloth */
+  .cloth {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+  .cloth svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .cloth-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .swatch:hover .cloth-ring,
+  .swatch:focus-within .cloth-ring,
+  main[data-thread] header .cloth-ring {
+    animation: turn 60s linear infinite;
+  }
+  /* A seam stitched in as the swatch is picked up */
+  .swatch .cloth::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 2px dashed var(--color-gold);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .swatch:hover .cloth::after,
+  .swatch:focus-within .cloth::after {
+    opacity: 1;
+  }
+
+  .loom {
+    overflow: visible;
+  }
+  .loom-thread {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 0.012 0.008;
+    animation: loom-in 1.4s ease-out both;
+  }
+  .thread-tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 18px;
+    border: 1px solid var(--color-rule);
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .thread-tab:hover {
+    border-color: var(--color-indigo);
+  }
+  .thread-tab[aria-current="page"] {
+    border-color: var(--color-indigo);
+    background: var(--color-indigo);
+    color: var(--color-raised);
+  }
+
+  /* The reader's progress, stitched across the top of the page */
+  .reading-thread {
+    display: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    .reading-thread {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 30;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, var(--color-gold) 0 14px, transparent 14px 22px);
+      animation: stitch linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  /* Contents, as beads on a thread */
+  .contents-thread {
+    border-left: 2px dashed var(--color-rule);
+  }
+  .contents-thread a {
+    position: relative;
+    display: block;
+    padding: 8px 0 8px 18px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+  .contents-thread a::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-rule);
+  }
+  .contents-thread a:hover,
+  .contents-thread a[aria-current] {
+    color: var(--color-ink);
+  }
+  .contents-thread a[aria-current] {
+    font-weight: 500;
+  }
+  .contents-thread a[aria-current]::before {
+    background: var(--thread);
+    border-color: var(--thread);
+  }
+
+  main[data-thread="workshop"] {
+    --thread: var(--color-indigo);
+  }
+  main[data-thread="market"] {
+    --thread: var(--color-terracotta);
+  }
+
+  /* The article itself */
+  .article {
+    font-size: clamp(17px, 1.3vw, 19px);
+    line-height: 1.7;
+  }
+  .article > * + * {
+    margin-top: 1.25em;
+  }
+  main[data-thread="market"] .article > p:first-child::first-letter {
+    float: left;
+    margin: 0.08em 0.1em 0 0;
+    font-family: var(--font-display);
+    font-size: 4.2em;
+    line-height: 0.82;
+    color: var(--color-terracotta);
+  }
+  .article h2 {
+    margin-top: 2em;
+    scroll-margin-top: 96px;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3vw, 40px);
+    line-height: 1.15;
+  }
+  .article h3 {
+    margin-top: 1.8em;
+    scroll-margin-top: 96px;
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .article a {
+    color: var(--thread);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .article ul,
+  .article ol {
+    padding-left: 1.3em;
+  }
+  .article ul {
+    list-style: disc;
+  }
+  .article ol {
+    list-style: decimal;
+  }
+  .article li + li {
+    margin-top: 0.4em;
+  }
+  .article li::marker {
+    color: var(--thread);
+  }
+  .article blockquote {
+    margin-block: 2em;
+    padding-left: 24px;
+    border-left: 3px dashed var(--color-gold);
+    font-family: var(--font-display);
+    font-size: clamp(26px, 2.6vw, 34px);
+    line-height: 1.22;
+    color: var(--thread);
+  }
+  .article hr {
+    margin-block: 2.5em;
+    border: 0;
+    height: 8px;
+    background: radial-gradient(circle, var(--color-gold) 4px, transparent 4.5px) center / 26px 8px repeat-x;
+    width: 78px;
+    margin-inline: auto;
+  }
+  .article img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+  .article :not(pre) > code {
+    padding: 0.12em 0.36em;
+    border-radius: 4px;
+    background: var(--color-raised);
+    border: 1px solid var(--color-line);
+    font-size: 0.88em;
+  }
+  .article code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .article pre {
+    overflow-x: auto;
+    padding: 18px 20px;
+    border-radius: 8px;
+    background: var(--color-slot);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .article pre code {
+    display: grid;
+    width: max-content;
+    min-width: 100%;
+  }
+  .article > pre,
+  .article figure[data-rehype-pretty-code-figure] {
+    position: relative;
+  }
+  .article figcaption[data-rehype-pretty-code-title],
+  .article [data-rehype-pretty-code-title] {
+    padding: 10px 20px 0;
+    border-radius: 8px 8px 0 0;
+    background: var(--color-slot);
+    color: #d9cdb8;
+    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .article [data-rehype-pretty-code-title] + pre {
+    border-radius: 0 0 8px 8px;
+  }
+  .code-copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    min-height: 32px;
+    padding-inline: 10px;
+    border: 1px solid rgb(255 253 248 / 0.3);
+    border-radius: 4px;
+    background: var(--color-slot);
+    color: var(--color-raised);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  /* Tables read like the receipts on the home page */
+  .article table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    padding: 8px 20px;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: var(--color-raised);
+    border-collapse: collapse;
+    font-size: 0.92em;
+  }
+  .article th {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-align: left;
+  }
+  .article th,
+  .article td {
+    padding: 10px 24px 10px 0;
+    border-bottom: 1px dashed var(--color-rule);
+  }
+  .article tr:last-child td {
+    border-bottom: 0;
+  }
+  .tied-off {
+    height: 16px;
+    background:
+      radial-gradient(circle, var(--thread) 7px, transparent 7.5px) center / 16px 16px no-repeat,
+      repeating-linear-gradient(90deg, var(--color-gold) 0 10px, transparent 10px 16px) center / 100% 2px no-repeat;
+  }
+}
+
 /* Scroll reveal. Only hides content when scripting is on, so the page always reads without it. */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   [data-reveal]:not(.is-in) {
@@ -330,6 +622,12 @@
   }
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes loom-in {
+  from {
+    opacity: 0;
+    transform: translateX(-3%);
   }
 }
 @keyframes turn {

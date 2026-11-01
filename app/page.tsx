@@ -8,6 +8,7 @@ import { SiteNav } from "@/components/site-nav";
 import { Stats } from "@/components/stats";
 import { Tools } from "@/components/tools";
 import { Work } from "@/components/work";
+import { WritingSection } from "@/components/writing-section";
 import { profile } from "@/content/resume";
 
 const personJsonLd = {
@@ -39,6 +40,7 @@ export default function Home() {
         <Work />
         <CareerPath />
         <Tools />
+        <WritingSection />
         <Contact />
       </main>
       <SiteFooter />
