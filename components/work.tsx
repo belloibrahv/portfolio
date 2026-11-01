@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { receipts, type Receipt } from "@/content/resume";
 import { cn } from "@/lib/utils";
 
-export function Work() {
+export function Work({ published }: { published: string[] }) {
   const [picked, setPicked] = useState(receipts[0].id);
   const counter = useRef<HTMLDivElement>(null);
   const active = receipts.find((r) => r.id === picked) ?? receipts[0];
@@ -61,7 +62,7 @@ export function Work() {
           <div className="relative -mx-1 h-3.5 rounded-b-md bg-slot sm:-mx-3.5" />
           {/* The key remounts the receipt, so it prints again on each pick. */}
           <div aria-live="polite" aria-atomic="true" className="relative">
-            <ReceiptPaper key={active.id} receipt={active} />
+            <ReceiptPaper key={active.id} receipt={active} hasStory={!!active.story && published.includes(active.story)} />
           </div>
         </div>
       </div>
@@ -69,7 +70,7 @@ export function Work() {
   );
 }
 
-function ReceiptPaper({ receipt }: { receipt: Receipt }) {
+function ReceiptPaper({ receipt, hasStory }: { receipt: Receipt; hasStory: boolean }) {
   return (
     <article className="receipt relative mx-auto max-w-[480px] text-ink">
       <div className="relative bg-raised px-[clamp(18px,2.4vw,32px)] pt-7 pb-5.5">
@@ -108,6 +109,11 @@ function ReceiptPaper({ receipt }: { receipt: Receipt }) {
         </div>
         <hr className="receipt-rule" />
         <p className="text-[13px] leading-[19px] text-muted">{receipt.stack}</p>
+        {hasStory && (
+          <Link href={`/writing/${receipt.story}`} className="mt-3 block py-1.5 text-center text-[15px] font-bold text-indigo underline underline-offset-3">
+            Read how it was built
+          </Link>
+        )}
         <p className="mt-3 text-center text-[13px] leading-[18px] text-muted">
           Thank you. Come again.
         </p>

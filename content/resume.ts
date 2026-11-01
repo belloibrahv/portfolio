@@ -42,11 +42,14 @@ export type Receipt = {
   total: readonly [label: string, value: string];
   stack: string;
   stamp: "Live" | "In work";
+  /** The slug of the piece telling this build's story. The link shows once it is published. */
+  story?: string;
 };
 
 export const receipts: readonly Receipt[] = [
   {
     id: "jekago",
+    story: "four-checks-before-a-payout",
     name: "JekaGo",
     kind: "Intercity bus booking and private rides",
     when: "Jun – Oct 2026",
@@ -65,6 +68,7 @@ export const receipts: readonly Receipt[] = [
   },
   {
     id: "stockvaults",
+    story: "when-the-network-drops-the-shop-keeps-selling",
     name: "StockVaults",
     kind: "Multi-branch inventory, POS and accounting",
     when: "Sep 2026 – Present",
